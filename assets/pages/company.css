@@ -1,0 +1,33 @@
+.banner-company {
+    height: 20vh;
+    background-size: cover !important;
+}
+
+.company-nav button {
+    text-transform: uppercase;
+}
+
+.company-header-container .company-avatar {
+    margin-top: -2rem;
+}
+
+.company-header-container .company-avatar {
+    position: relative;
+    transform: none;
+    top: auto;
+    right: 0;
+    box-shadow: none;
+}
+
+ul.company-menu {
+    top: 100px;
+}
+
+.company-section-title {
+    margin-top: 10rem;
+    position: relative;
+}
+
+.company-section-title:first-of-type {
+    margin-top: 0;
+}

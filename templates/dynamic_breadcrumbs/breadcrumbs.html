@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb pt-4" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+	{% for item in breadcrumbs %}
+	{% if forloop.last %}
+	<li class="breadcrumb-item text-capitalize active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+	    <span class=" fw-bold" itemprop="name">{{ item.name }}</span>
+	    <meta itemprop="position" content='{{item.position}}' />
+	</li> 
+	{% else %}
+	<li class=" text-capitalize breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+	    {% if item.resolved %}
+	    <a itemprop="item" href="{{item.url}}" >
+		<span itemprop="name">{{item.name}}</span>
+	    </a>
+	    <meta itemprop="position" content="{{item.position}}" />
+	    {%else%}
+	    <span itemprop="name">{{item.name}}</span>
+	    <meta itemprop="position" content="{{item.position}}" />
+
+	    {%endif%}
+	</li>
+	{% endif %}
+    	{% endfor %}
+    </ol>
+	<hr />
+</nav>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- <div class="page-research banner-page">
+
+</div> -->
+<img class="mx-auto container rounded shadow p-0 page-post banner-page" style="min-height: 352px" src="{{ object.photo.url }}"  alt="{{ object.photo_description }}">
+
+<article class="container py-5 px-3 p-md-5">
+    <h2 class="article-title">Umain <span class="text-bold">Research Area</span></h2>
+    <p>Welcome to the <strong>Umain Research</strong> area. Here you will find our latest researches and, when available, their results and analysis. We welcome your participation in our studies and invite you to share this page with your friends and colleagues.</p>
+    <div class="accordion" id="accordionResearch">
+        <div class="accordion-item">
+            <h3 class="accordion-header" id="headingStudentPerspective">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseStudentPerspective" aria-expanded="true" aria-controls="collapseStudentPerspective">
+                    Diversity and Inclusion in the University: A Student Perspective
+                </button>
+            </h3>
+            <div id="collapseStudentPerspective" class="accordion-collapse collapse show" aria-labelledby="headingStudentPerspective" data-bs-parent="#accordionResearch">
+                <div class="accordion-body">
+                    <p>Welcome to the <strong>Umain Research</strong> on Diversity and Inclusion in the University. This study seeks to learn about the students' perception on the campus diversity composition and openess to inclusion.</p>
+                    <p>Your point of view is much aprecciated and the time that you dedicate to answer our survey is of great contribution. As a student, your perspective will help us to get a picture of how the BAME, Pride and Disability communities are in the campus and how the university is open to them.</p>
+                    <p>Taking into account the motto "Nothing about us, without us", as a student within those communities, your answers will help us to learn about the university attitudes and/or actions for inclusion. If you would like to take part in this research, please click on the appropriate option below:</p>
+                    <p><strong>I identify myself as in the:</strong></p>
+                    <ul class="mb-0 list-inline list-unstyled">
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/JD1B2Rk57rQSNRTL9"><i class="fas fa-external-link-alt me-3"></i>BAME Community </a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/LHwShR1ujFXLCQoX9"><i class="fas fa-external-link-alt me-3"></i>BAME/Pride (LGBTIQ+) communities </a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/8nCp7ywBYCSbbHx39"><i class="fas fa-external-link-alt me-3"></i>BAME/Disability communities </a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/5u7UofCahc2wL9Pj8"><i class="fas fa-external-link-alt me-3"></i>BAME/Pride (LGBTIQ+) /Disability communities </a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/nE7SLzt2Jyk7qm1H6"><i class="fas fa-external-link-alt me-3"></i>White Caucasian Community </a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/86nHqXCSQfTDnXVg9"><i class="fas fa-external-link-alt me-3"></i>White Caucasian /Pride (LGBTIQ+) communities </a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/Bcd6jgsns1sDiSmcA"><i class="fas fa-external-link-alt me-3"></i>White Caucasian / Disability communities</a></li>
+                        <li class="pb-2"><a class="btn btn-outline-primary btn-sm" title="Opens in new window" target="_blank" href="https://forms.gle/tBjK1XLrhxNWJe3o6"><i class="fas fa-external-link-alt me-3"></i>White Caucasian /Pride (LGBTIQ+) /Disability communities </a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h3 class="accordion-header" id="headingCandidate">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCandidate" aria-expanded="false" aria-controls="collapseCandidate">
+                    Research on Diversity and Inclusion Expectations for a Non-discriminatory CV Template. A Candidate perspective
+                </button>
+            </h3>
+            <div id="collapseCandidate" class="accordion-collapse collapse" aria-labelledby="headingCandidate" data-bs-parent="#accordionResearch">
+                <div class="accordion-body">
+                    <p>This study seeks to learn about the candidate perception of discriminatory assessment of their CV’s, and how they feel about a CV template where they can be open about their race, sexual orientation or disability without fearing discrimination for it. It also investigates the candidate expectations on diversity, inclusion and social environment cultures of the company whose vacancies they are applying for. </p>
+                    <p>We rate highly your participation in this survey. Your point of view is much appreciated and the time that you dedicate to answer our survey is of great contribution.</p>
+                    <p>Are you ready to participate in the research now?</p>
+                    <p><a class="btn btn-outline-primary btn-sm" title="Open new tab" target="_blank" href="https://forms.gle/YavtuSLuA2QZDW5K9"><i class="fas fa-external-link-alt me-3"></i>Yes, I’m in.</a></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</article>
+{% endblock %}

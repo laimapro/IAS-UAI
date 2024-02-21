@@ -1,0 +1,283 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<section class="col-12 p-3 col-md-8 col-lg-10 mx-auto pt-5">
+	<div class="row">
+		<div class="col-12 col-md-4">
+			<figure>
+				<img class="candidate-user-picture img-fluid img-thumbnail rounded"
+				{% if object.picture %} src="{{ object.picture.url }}"  {% else %}  src="{% static 'picture-not-provided.svg' %}" {% endif %}
+				{% if object.picture_description %} alt="{{ object.picture_description }}"  {% else %} alt="Picture not Provided" {% endif %}
+				>
+			</figure>
+			<div class="text-center mt-4 mb-2">
+				<button class="btn btn-outline-primary" title="Opens in new window" onclick="window.open('{% url 'cv_detail' object.id %}', '_blank')" type="button">
+					<i class="fas fa-share-alt me-3"></i>
+					Share CV
+				</button>
+			</div>
+		</div>
+		<div class="col-12 col-md">
+			<div class="m-3">
+				<div class="px-3 pt-4 pb-3">
+					{% if object.title_pronoun %}<div class="text-muted">{{ object.title_pronoun }}</div>{% endif %}
+					<h2 class="mb-4">{% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}</h2>
+				</div>
+				<div class="accordion accordion-flush" id="accordionFlushCandidateDetail">
+					<!-- ABOUT -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingAbout">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseAbout" aria-expanded="false" aria-controls="flush-collapseAbout">
+								<span class="text-uppercase text-muted">About</span>
+							</button>
+						</h2>
+						<div id="flush-collapseAbout" class="accordion-collapse collapse show" aria-labelledby="flush-headingAbout" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+
+								<ul class="list-group list-group-flush">
+									{% if object.mycv.about %}<li class="list-group-item">{{ object.mycv.about|safe }}</li>{% endif %}
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- Personal Information -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingPinfo">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsePinfo" aria-expanded="false" aria-controls="flush-collapsePinfo">
+								<span class="text-uppercase text-muted">Personal Information</span>
+							</button>
+						</h2>
+						<div id="flush-collapsePinfo" class="accordion-collapse collapse" aria-labelledby="flush-headingPinfo" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+
+								<ul class="list-group list-group-flush">
+									{% if object.birth_date %}<li class="list-group-item">Birth date: <strong>{{ object.birth_date }}</strong></li>{% endif %}
+
+									{% if object.allow_nacionality == '2' and object.id == request.user.id or object.allow_nacionality == '3' and request.user.type == 'COMPANY' or object.allow_nacionality == '1'  %}
+										{% if object.nacionality_race %}
+										<li class="list-group-item">Color, Race, Ethnicity: <strong>I identify myself as {{ object.nacionality_race }}</strong>
+											{% if object.other_nacionality %} / <strong>{{ object.other_nacionality }}</strong>{% endif %}</li>
+										{% endif %}
+									{% endif %}
+
+									{% if object.allow_gender == '2' and object.id == request.user.id or object.allow_gender == '3' and request.user.type == 'COMPANY' or object.allow_gender == '1'  %}
+										{% if object.gender_identity %}<li class="list-group-item">Gender identity: <strong>I identify myself as {{ object.gender_identity }}</strong>{% if object.other_gender %} / <strong>{{ object.other_gender }}{% endif %}</strong></li>{% endif %}
+									{% endif %}
+
+									{% if object.allow_orientation == '2' and object.id == request.user.id or object.allow_orientation == '3' and request.user.type == 'COMPANY' or object.allow_orientation == '1'  %}
+										{% if object.sexual_orientation %}<li class="list-group-item">Sexual orientation: <strong>I identify myself as {{ object.sexual_orientation }}</strong>{% if object.other_orientation %} / <strong>{{ object.other_orientation }}{% endif %}</strong></li>{% endif %}
+									{% endif %}
+
+									{% if object.allow_desability == '2' and object.id == request.user.id or object.allow_desability == '3' and request.user.type == 'COMPANY' or object.allow_desability == '1'  %}
+										{% if object.desability %}<li class="list-group-item">Disability: <strong>{{ object.desability }}</strong>{% if object.other_desability %} / <strong>{{ object.other_desability }}</strong>{% endif %}</li>{% endif %}
+									{% endif %}
+								</ul>
+
+							</div>
+						</div>
+					</div>
+					<!-- Education Levels -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingEducation">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEducation" aria-expanded="false" aria-controls="flush-collapseEducation">
+								<span class="text-uppercase text-muted">Qualification</span>
+							</button>
+						</h2>
+						<div id="flush-collapseEducation" class="accordion-collapse collapse" aria-labelledby="flush-headingEducation" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+								<ul class="list-group list-group-flush">
+									<!-- Adicionais informações sobre a escolaridade -->
+									{% if object.mycv.entry_level %}
+									<li class="list-group-item"><strong>{{ object.mycv.entry_level }}</strong>: {{ object.mycv.additional_info }} </li>
+									{% endif %}
+									{% if object.mycv.level1 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level1 }}</strong>: {{ object.mycv.additional_info_lv1 }} </li>
+									{% endif %}
+									{% if object.mycv.level2 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level2 }}</strong>: {{ object.mycv.additional_info_lv2 }} </li>
+									{% endif %}
+									{% if object.mycv.level3 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level3 }}</strong>: {{ object.mycv.additional_info_lv3 }} </li>
+									{% endif %}
+									{% if object.mycv.level4 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level4 }}</strong>: {{ object.mycv.additional_info_lv4 }} </li>
+									{% endif %}
+									{% if object.mycv.level5 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level5 }}</strong>: {{ object.mycv.additional_info_lv5 }} </li>
+									{% endif %}
+									{% if object.mycv.level6 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level6 }}</strong>: {{ object.mycv.additional_info_lv6 }} </li>
+									{% endif %}
+									{% if object.mycv.level7 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level7 }}</strong>: {{ object.mycv.additional_info_lv7 }} </li>
+									{% endif %}
+									{% if object.mycv.level8 %}
+									<li class="list-group-item"><strong>{{ object.mycv.level8 }}</strong>: {{ object.mycv.additional_info_lv8 }} </li>
+									{% endif %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Language -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingLanguage">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseLanguage" aria-expanded="false" aria-controls="flush-collapseLanguage">
+								<span class="text-uppercase text-muted">Language Competence</span>
+							</button>
+						</h2>
+						<div id="flush-collapseLanguage" class="accordion-collapse collapse" aria-labelledby="flush-headingLanguage" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+								<ul class="list-group list-group-flush">
+									{% for obj in language_skills %}<li class="list-group-item"><strong>{{ obj.lang }}</strong> (Writing level: {{ obj.writing_level }} | Speaking level: {{ obj.speaking_level }})</li>{% endfor %}
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					
+
+					<!-- Work Experiences -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingWork">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseWork" aria-expanded="false" aria-controls="flush-collapseWork">
+								<span class="text-uppercase text-muted">Work Experiences</span>
+							</button>
+						</h2>
+						<div id="flush-collapseWork" class="accordion-collapse collapse" aria-labelledby="flush-headingWork" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+								<ul class="list-group list-group-flush">
+									<!-- adicionar o lopp com as experiencia do candidato -->
+									{% for obj in work_exp %}
+									<li class="list-group-item">
+										<strong title="Job role">{{ obj.job_role }}</strong> ({{ obj.company_name }})
+										<div class="w-100"></div>
+										<p class="my-2">Work description: {{ obj.work_description }}</p>
+										<small class="text-muted">Start date: {{ obj.start_date }} | End date: {{ obj.end_date }}</small>
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Skill-->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingSkills">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSkills" aria-expanded="false" aria-controls="flush-collapseSkills">
+								<span class="text-uppercase text-muted">Skills</span>
+							</button>
+						</h2>
+						<div id="flush-collapseSkills" class="accordion-collapse collapse" aria-labelledby="flush-headingSkills" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+								<ul class="list-group list-group-flush">
+									<!-- Adicionais informações sobre as habilidades. casa um com seu grupo representado abaixo -->
+
+									<li class="list-group-item"><strong>Work Skills</strong>:
+										{% for obj in work_skills %}{{ obj.skill_name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+									</li>
+									<li class="list-group-item"><strong>Social Skills</strong>:
+										{% for obj in social_skills %}{{ obj.title }}{% if not forloop.last %}, {% endif %}{% endfor %}
+									</li>
+									<li class="list-group-item"><strong>Other Skills</strong>:
+										{% for obj in other_skills %}{{ obj.title }}{% if not forloop.last %}, {% endif %}{% endfor %}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Accommodations or other need -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingNeed">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-Need" aria-expanded="false" aria-controls="flush-Need">
+								<span class="text-uppercase text-muted">Accommodations or other needs</span>
+							</button>
+						</h2>
+						<div id="flush-Need" class="accordion-collapse collapse" aria-labelledby="flush-headingNeed" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+								<ul class="list-group list-group-flush">
+									{% for obj in accommodations %}
+									<li class="list-group-item">{{ obj.title }}</li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Personality Traits -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingPersonality">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-Personality" aria-expanded="false" aria-controls="flush-Personality">
+								<span class="text-uppercase text-muted">Personality Traits</span>
+							</button>
+						</h2>
+						<div id="flush-Personality" class="accordion-collapse collapse" aria-labelledby="flush-headingPersonality" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-2">
+								<p>
+									Personality Traits, from 1 to 5, 1 being the least and 5 being the most accurate value.
+								</p>
+								<ul class="section-detail">
+									<li>I’m a multitasker: <strong>{{ object.mycv.multitasker }}</strong></li>
+									<li>I’m a strategic thinker: <strong>{{ object.mycv.strategic_thinker }}</strong></li>
+									<li>I’m a decider: <strong>{{ object.mycv.decider }}</strong></li>
+									<li>I’m a cautious person: <strong>{{ object.mycv.cautious_person }}</strong></li>
+									<li>I’m an independent thinker: <strong>{{ object.mycv.independent_thinker }}</strong></li>
+									<li>I’m a team player: <strong>{{ object.mycv.team_player }}</strong></li>
+									<li>I’m a cultural fit: <strong>{{ object.mycv.cultural_fit }}</strong></li>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+					<!-- ContactLocation -->
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="flush-headingContactLocation">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-ContactLocation" aria-expanded="false" aria-controls="flush-ContactLocation">
+								<span class="text-uppercase text-muted">Contact / Location</span>
+							</button>
+						</h2>
+						<div id="flush-ContactLocation" class="accordion-collapse collapse" aria-labelledby="flush-headingContactLocation" data-bs-parent="#accordionFlushCandidateDetail">
+							<div class="accordion-body px-0 pb-5">
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item border-0 text-uppercase text-muted">Contact</li>
+
+									{% if object.allow_email == '2' and object.id == request.user.id or object.allow_email == '3' and request.user.type == 'COMPANY' or object.allow_email == '1' %}
+									<li class="list-group-item">Email: <strong><a title="Send email to {% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}" href="mailto:{{ object.email }}">{{ object.email }}</a></strong></li>
+									{% endif %}
+									{% if object.website %}
+									<li class="list-group-item">Web: <strong><a href="{{ object.website }}" title="Opens in new window" target="_blank">{{ object.website }}</a></strong></li>
+									{% endif %}
+
+									<li class="list-group-item">Social network:
+										{% if object.facebook %}
+										<!-- Facebook --> <a title="Opens in new window" target="_blank" title="{% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}'s Facebook" role="button" class="my-0 mx-2 d-inline-block" href="{{ object.facebook }}"> <i aria-hidden="true" class="fab fa-facebook"> </i></a>{% endif%}
+										{% if object.instagram %}
+										<!-- Instagram --> <a title="Opens in new window" target="_blank" title="{% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}'s Instagram" role="button" class="my-0 mx-2 d-inline-block" href="{{ object.instagram }}"> <i aria-hidden="true" class="fab fa-instagram"> </i></a>{% endif%}
+										{% if object.youtube %}
+										<!-- Youtube --> <a title="Opens in new window" target="_blank" title="{% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}'s Youtube" role="button" class="my-0 mx-2 d-inline-block" href="{{ object.youtube }}"> <i aria-hidden="true" class="fab fa-youtube"> </i></a>{% endif%}
+										{% if object.twitter %}
+										<!-- Twitter --> <a title="Opens in new window" target="_blank" title="{% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}'s Twitter" role="button" class="my-0 mx-2 d-inline-block" href="{{ object.twitter }}"> <i aria-hidden="true" class="fab fa-twitter"> </i></a>{% endif%}
+										{% if object.linkedin %}
+										<!-- Linkedin --> <a title="Opens in new window" target="_blank" title="{% if object.social_name %} {{ object.social_name }} {% else %} {{ object.name }} {% endif %}'s Linkedin" role="button" class="my-0 mx-2 d-inline-block" href="{{ object.linkedin }}"> <i aria-hidden="true" class="fab fa-linkedin-in"> </i></a>{% endif%}
+									</li>
+								</ul>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item border-0 text-uppercase text-muted" style="padding: 3rem 1rem 1.25rem">Location</li>
+									{% if object.city %}<li class="list-group-item">City: <strong>{{ object.city }}</strong></li>{% endif %}
+									{% if object.state_province %}<li class="list-group-item">State province: <strong>{{ object.state_province }}</strong></li>{% endif %}
+									{% if object.country %}<li class="list-group-item">Country: <strong>{{ object.country }}</strong></li>{% endif %}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

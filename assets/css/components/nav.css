@@ -1,0 +1,68 @@
+.sb-sidenav {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-wrap: nowrap;
+    border-right: 1px solid #ddd;
+}
+
+.sb-sidenav .fas {
+    font-size: 1rem;
+
+}
+
+.sb-sidenav a {
+    color: var(--bs-body-color);
+}
+
+.sb-sidenav .sb-sidenav-menu {
+    flex-grow: 1;
+}
+
+.sb-sidenav .sb-sidenav-menu .nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+}
+
+.sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-sidenav-collapse-arrow {
+    display: inline-block;
+    margin-left: auto;
+    transition: transform 0.15s ease;
+}
+
+.sb-sidenav .sb-sidenav-menu .nav .nav-link.collapsed .sb-sidenav-collapse-arrow {
+    transform: rotate(-90deg);
+}
+
+.sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-nested {
+    margin-left: 1.5rem;
+    flex-direction: column;
+}
+
+.sb-sidenav .sb-sidenav-footer {
+    padding: 0.75rem;
+    flex-shrink: 0;
+}
+
+
+.sb-sidenav-menu-heading {
+    color: #757575;
+    font-size: 0.875rem;
+    letter-spacing: 0.01786em;
+    line-height: 1.2em !important;
+    padding: 1.75rem 1rem 0.75rem;
+    text-transform: uppercase;
+}
+
+.menu-footer {
+    padding: 15px 24px 8px;
+    text-align: center;
+    opacity: 0.65;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-around;
+}

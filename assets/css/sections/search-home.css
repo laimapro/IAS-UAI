@@ -1,0 +1,53 @@
+.search-container {
+	position: relative;
+	min-height: 100vh;
+	overflow: hidden;
+}
+
+.search-container-form {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.search-container:after,
+.search-container:before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+.search-container:before {
+	z-index: -2;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	background-image: url('../banner-home.jpg');
+}
+
+.search-container:after {
+	z-index: 0;
+	background: #000;
+	opacity: 0.3;
+	z-index: -1;
+
+}
+
+.search-container form {
+	background: #fff;
+	padding-top: calc(var(--bs-gutter-x) * 0.5);
+	padding-bottom: calc(var(--bs-gutter-x) * 0.5)
+}
+
+@media screen and (max-width: 767px) {
+
+	form.search-container-job,
+	form.search-container-post,
+	.search-container form {
+		border-radius: 0 !important;
+	}
+}

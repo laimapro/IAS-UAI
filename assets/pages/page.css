@@ -1,0 +1,11 @@
+@import url('cv.css');
+@import url('contact.css');
+@import url('company.css');
+@import url('account.css');
+
+.banner-page{
+    background-image: url('../about-us.svg');
+}
+.page-research{
+    background-image: url('../pexels-pixabay-159711.jpg');
+}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<!-- filtered_reports.html -->
+
+    <div class="container-fluid p-5">
+
+        {% if request.user.type != 'PARTICIPANT' %}
+            <h1>Dashboard</h1>
+
+            <h3>Relatório das pesquisas</h3>
+            <form method="get" class="my-4">
+                <label for="category_id">Category:</label>
+                <select name="category_id" id="category_id">
+                    <option value="">All</option>
+                    <!-- Aqui você precisa iterar sobre as categorias disponíveis e criar opções para cada uma -->
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.title }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="correct_option">Correct Option:</label>
+                <select name="correct_option" id="correct_option">
+                    <option value="">All</option>
+                    <option value="True">Correct</option>
+                    <option value="False">Incorrect</option>
+                </select>
+
+                <label for="instance_id">Instance:</label>
+                <select name="instance_id" id="instance_id">
+                    <option value="">All</option>
+                    <!-- Aqui você precisa iterar sobre as instâncias disponíveis e criar opções para cada uma -->
+                    {% for instance in instances %}
+                    <option value="{{ instance.id }}">{{ instance.title }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="participant_id">Participant:</label>
+                <select name="participant_id" id="participant_id">
+                    <option value="">All</option>
+                    <!-- Aqui você precisa iterar sobre os participantes disponíveis e criar opções para cada um -->
+                    {% for participant in participants %}
+                    <option value="{{ participant.id }}">{{ participant.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Filter</button>
+            </form>
+
+            <table class="table my-4">
+                <thead>
+                    <tr>
+                        <th>Participante</th>
+                        <th>Categoria</th>
+                        <th>Questão</th>
+                        <th>Opção</th>
+                        <th>Escala de Likert</th>
+                        <th>Tentativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for score in total_scores %}
+                    <tr>
+                        <td>{{ score.Participant }}</td>
+                        <td>{{ score.Category }}</td>
+                        <td>{{ score.Question }}</td>
+                        <td>{{ score.Option }}</td>
+                        <td>{{ score.Score }}</td>
+                        <td>{{ score.AttemptNumber }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="">
+                <a href="?export_excel=1&{{ request.GET.urlencode }}" class="btn btn-primary">Export to Excel</a>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+
+{% endblock %}

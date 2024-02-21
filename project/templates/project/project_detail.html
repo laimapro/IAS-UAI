@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+	<div class="container-fluid p-5">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="project-info-box mt-0">
+					<h2 class="text-uppercase">{{ object.pj_name }} ({{ object.pj_code }})</h2>
+					<p class="mb-4">{{ object.pj_description }}</p>
+				</div>
+
+				<div class="project-info-box">
+					<p><b class="text-uppercase">{% trans 'Coordinator' %}:</b>
+						{% if object.coordinator %}
+							{{ object.coordinator.name }}
+							{% if not object.coordinator.is_active %}
+								<span class="badge badge-primary badge-pill">{% trans 'Waiting for activation' %}</span>
+							{% endif %}
+						{% else %}
+							{% if request.user.is_superuser %}
+								<a href="{% url 'pj_invitation' 1 obj.id %}" class="btn btn-success">
+									{% trans 'Send invitation' %}</a>
+							{% endif %}
+						{% endif %}
+					</p>
+					<p><b class="text-uppercase">{% trans 'Manager' %}:</b>
+						{% if object.manager %}
+							{{ object.manager.name }}
+							{% if not object.manager.is_active %}
+								<span class="badge badge-primary badge-pill p-2">{% trans 'Waiting for activation' %}</span>
+							{% endif %}
+						{% else %}
+							<a href="{% url 'pj_invitation' 2 obj.id %}" class="btn btn-success">{% trans 'Send invitation' %}</a>
+						{% endif %}
+					</p>
+					<p><b>{% trans 'Created' %}:</b> {{ object.created_at }}</p>
+				</div>
+				{% if request.user.type != 'PARTICIPANT' %}
+				<div class="project-info-box mt-5">
+
+					<h2 class="text-uppercase">{% trans 'Participants' %}</h2>
+					<ul class="list-group">
+						{% for participant in participants %}
+							<li class="list-group-item d-flex justify-content-between align-items-center">
+								{{ participant.name }} - {{ participant.email }}
+							</li>
+						{% endfor %}
+					</ul><br>
+					<a href="{% url 'pj_invite' object.id%}"class="btn btn-primary">{% trans 'Invite participant' %}</a>
+				</div>
+				{% endif %}
+			</div>
+			<div class="col-md-6">
+				<h2 class="text-uppercase">{% trans 'Instances' %}</h2>
+				<ul class="list-group">
+					{% if instances_with_question_count %}
+						{% for instance, finished_instance in instances_with_question_count %}
+							<li class="list-group-item d-flex justify-content-between align-items-center">
+								{{ instance.title }}
+								{% if finished_instance.status_attempt == 1 %}
+									<span>Pesquisa respondida</span>
+								{% else %}
+									<span class="badge badge-pill" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+										<a href="{% url 'survey_start' instance.id %}" class="btn btn-primary">{% trans 'Answer survey' %}</a>
+									</span>
+								{% endif %}
+							</li>
+						{% endfor %}
+					{% else %}
+						<li class="list-group-item">Nenhuma instância encontrada</li>
+					{% endif %}
+				</ul>
+				{% if request.user.type == 'COORDINATOR' %}
+					<a href="#" class="btn btn-primary my-4">{% trans 'Add new instance' %}</a>
+					<a href="{% url 'instance_import' object.id %}" class="btn btn-primary my-4">{% trans 'Import Word file' %} (docx)</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

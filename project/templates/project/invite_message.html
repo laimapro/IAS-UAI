@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite para Cadastro</title>
+</head>
+<body>
+    <h2>Convite para Cadastro</h2>
+    <p>Você recebeu um convite para se cadastrar no nosso sistema. Clique no link abaixo para criar sua conta:</p>
+    <a href="{{ invitation_link }}">Cadastrar Agora</a>
+    <p>Se o link acima não funcionar, copie e cole o seguinte URL no seu navegador:</p>
+    <p>{{ invitation_link }}</p>
+    <p>Obrigado!</p>
+</body>
+</html>

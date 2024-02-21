@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="project-info-box mt-0">
+					<h2 class=" text-uppercase">{{ object.pj_name }}</h2>
+					<p class="mb-4">Vivamus pellentesque, felis in aliquam ullamcorper, lorem tortor porttitor erat, hendrerit porta nunc tellus eu lectus. Ut vel imperdiet est. Pellentesque condimentum, dui et blandit laoreet, quam nisi tincidunt tortor.</p>
+				</div>
+
+				<div class="project-info-box">
+					<p><b>{% trans 'Coordinator' %}:</b>
+						{% if object.coordinator %}
+							{{ object.coordinator.name }}
+							{% if not object.coordinator.is_active %}
+								<span class="label label-danger">Waiting for activation</span>
+							{% endif %}
+						{% else %}
+							<a href="{% url 'pj_invitation' 1 obj.id %}">{% trans 'Send invitation' %}</a>
+						{% endif %}
+					</p>
+					<p><b>{% trans 'Manager' %}:</b>
+						{% if object.manager %}
+							{{ object.manager.name }}
+							{% if not object.manager.is_active %}
+								<span class="label label-danger">Waiting for activation</span>
+							{% endif %}
+						{% else %}
+							<a href="{% url 'pj_invitation' 2 obj.id %}">{% trans 'Send invitation' %}</a>
+						{% endif %}
+					</p>
+					<p><b>{% trans 'Created' %}:</b> {{ object.created_at }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

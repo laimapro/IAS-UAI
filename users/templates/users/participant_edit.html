@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% block title %}My profile{% endblock %}
+
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="col-12 p-3 col-md-8 col-lg-10 mx-auto pt-5">
+    <div class="w-100 article-title d-flex justify-content-between align-items-center">
+        <h2 class="mb-4">Edit <span class="text-bold">profile</span>
+            <small class="mt-3 text-muted d-block lead">{% if user.candidate.social_name %}{{ user.candidate.social_name }}{% else %}{{ user.name }}{% endif %}</small>
+        </h2>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" id="message">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+
+        <section class="d-flex row">
+            <!-- PICTURE USER SECTION -->
+            <fieldset class="col-12 pe-md-0 pe-3  user-bg col-md-4">
+                <h3>User Picture</h3>
+                <div class="form-floating mb-3">
+                    {% render_field form.picture|add_class:'form-control' placeholder=form.picture.label %}
+                    <label for="id_picture">Picture</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    {% render_field form.picture_description|add_class:'form-control' placeholder='Insert a brief description of your picture' aria-label='Insert a brief description of your picture' %}
+                    <label for="id_picture_description">Image description</label>
+                </div>
+            </fieldset>
+
+            <!-- INFO USER SECTION -->
+
+            <div class="col-12 pt-0 p-3 col-md-8">
+                <!-- IDENTIFICAÇÃO DO USUÁRIO -->
+                <fieldset class="mb-4">
+                    <h3>Personal Information</h3>
+                    <!-- NOME -->
+                    <div class="form-floating mb-3">
+                        {% render_field form.name|add_class:'form-control' placeholder=form.name.label %}
+                        <label for="id_name">Name of candidate</label>
+                    </div>
+                    <!-- DATA DE NASCIMENTO -->
+                    <div class="form-floating mb-3">
+                        {% render_field form.birth_date|add_class:'form-control' type='date' placeholder=form.birth_date.label %}
+                        <label for="id_birth_date">Birth date</label>
+                    </div>
+                    <!-- NOME SOCIAL -->
+                    <div class="row">
+                        <div class=" col-12 col-md-8 mb-3">
+                            <div class="form-floating">
+                                {% render_field form.social_name|add_class:'form-control' placeholder='Enter the name you want to be addressed by. Or leave it blank to use your full name' aria-label='Enter the name you want to be addressed by. Or leave it blank to use your full name' %}
+                                <label for="id_social_name">Social name</label>
+                            </div>
+                        </div>
+                        <!-- PRONOME -->
+                        <div class=" col-12 col-md-4 mb-3">
+                            <div class="form-floating">
+                                {% render_field form.title_pronoun|add_class:'form-control' placeholder='Enter the Title and/or Pronoun you want to be addressed by. For Example Ms./She/Her' aria-label='Enter the Title and/or Pronoun you want to be addressed by. For Example Ms./She/Her' %}
+                                <label for="id_title_pronoun">Title pronoun</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+
+
+<!--                &lt;!&ndash; ABOUT &ndash;&gt;-->
+<!--                <fieldset class="mb-4">-->
+<!--                    <h3>About</h3>-->
+<!--                    <p class="text-muted">-->
+<!--                        Tell briefly about yourself, what you can contribute to the company you are applying for or why you want a certain vacancy.-->
+<!--                    </p>-->
+<!--                    <div class="form-floating">-->
+<!--                        {% render_field form.about|add_class:'form-control' placeholder=form.about.label %}-->
+<!--                    </div>-->
+<!--                </fieldset>-->
+
+
+                <!-- NACIONALIDADE -->
+<!--                <fieldset class="mb-4">-->
+<!--                    <h3>Color, Race or Ethnicity</h3>-->
+
+<!--                    <div class="row">-->
+<!--                        <div class=" col-12 col-md-8 mb-3">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.nacionality_race|add_class:'form-control' placeholder='Enter the color, race or ethnicity that you identify yourself as' aria-label='Enter the color, race or ethnicity that you identify yourself as' %}-->
+<!--                                <label for="id_nacionality_race">Color, Race or Ethnicity</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" col-12 col-md-4 mb-3">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.other_nacionality|add_class:'form-control' placeholder='Other color, race or ethnicity' aria-label='Other color, race or ethnicity' %}-->
+<!--                                <label for="id_other_nacionality">Other color, race or ethnicity</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-12">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.allow_nacionality|add_class:'form-control' placeholder=form.allow_nacionality.label %}-->
+<!--                                <label class="form-floating" for="id_allow_nacionality">Allow color, race or ethnicity &lt;!&ndash; {{ form.allow_nacionality.label }} &ndash;&gt;</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </fieldset>-->
+
+                <!-- GENERO -->
+                <fieldset class="mb-4">
+                    <h3>Gender</h3>
+                    <div class="row">
+
+                        <div class="col-12 col-md-8">
+                            <div class="form-floating mb-3">
+                                {% render_field form.gender_identity|add_class:'form-control' placeholder='I identify myself as' aria-label='I identify myself as' %}
+                                <label for="id_gender_identity">Gender identity</label>
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 col-md">
+                            <div class="form-floating mb-3">
+                                {% render_field form.other_gender|add_class:'form-control' placeholder=form.other_gender.label %}
+                                <label for="id_other_gender">Other gender</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% render_field form.allow_gender|add_class:'form-control' placeholder=form.allow_gender.label %}
+                        <label class="form-check-label" for="id_allow_gender">{{ form.allow_gender.label }}</label>
+                    </div>
+                </fieldset>
+
+                <!-- SEXUALIDADE -->
+                <fieldset class="mb-4">
+                    <h3>Sexual Orientation</h3>
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <div class="form-floating mb-3">
+                                {% render_field form.sexual_orientation|add_class:'form-control' placeholder=form.sexual_orientation.label %}
+                                <label for="id_sexual_orientation">Sexual orientation</label>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md">
+                            <div class="form-floating mb-3">
+                                {% render_field form.other_orientation|add_class:'form-control' placeholder=form.other_orientation.label %}
+                                <label for="id_other_orientation">Other sexual orientation</label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% render_field form.allow_orientation|add_class:'form-control' placeholder=form.allow_orientation.label %}
+                        <label class="form-check-label" for="id_allow_orientation">Allow sexual orientation<!-- {{ form.allow_orientation.label }} --></label>
+                    </div>
+                </fieldset>
+
+                <!-- DEFICIÊNCIA -->
+                <fieldset class="mb-4">
+                    <h3>Disability</h3>
+                    <div class="row">
+                        <div class=" col-12 col-md-8 mb-3">
+                            <div class="form-floating">
+                                {% render_field form.desability|add_class:'form-control' placeholder=form.desability.label %}
+                                <label for="id_desability">Desability</label>
+                            </div>
+                        </div>
+                        <div class=" col-12 col-md-4 mb-3">
+
+                            <div class="form-floating">
+                                {% render_field form.other_desability|add_class:'form-control' placeholder=form.other_desability.label %}
+                                <label for="id_other_desability">Other desability</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating mb-3">
+                                {% render_field form.allow_desability|add_class:'form-control' placeholder=form.allow_desability.label %}
+                                <label class="form-check-label" for="id_allow_desability">{{ form.allow_desability.label }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- CONTATO/LINKS -->
+                <fieldset class="mb-4">
+                    <h3>Contact e Links</h3>
+                    <!-- EMAIL -->
+                    <div class="form-floating mb-3">
+                        {% render_field form.email|add_class:'form-control' placeholder=form.email.label %}
+                        <label for="id_email">Email</label>
+                    </div>
+<!--                    <div class="form-floating mb-3">-->
+<!--                        {% render_field form.allow_email|add_class:'form-control' placeholder=form.allow_email.label %}-->
+<!--                        <label class="form-check-label" for="id_allow_email">{{ form.allow_email.label }}</label>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; REDES SOCIAIS &ndash;&gt;-->
+<!--                    <div class="row">-->
+<!--                        <div class="col-6">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.website|add_class:'form-control' placeholder=form.website.label %}-->
+<!--                                <label for="id_website">Webpage</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-6">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.linkedin|add_class:'form-control' placeholder=form.linkedin.label %}-->
+<!--                                <label for="id_linkedin">Linkedin</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6 col-12">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.facebook|add_class:'form-control' placeholder=form.facebook.label %}-->
+<!--                                <label for="id_facebook">Facebook</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+
+<!--                        <div class="col-md-6 col-12">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.twitter|add_class:'form-control' placeholder=form.twitter.label %}-->
+<!--                                <label for="id_twitter">Twitter</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6 col-12">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.instagram|add_class:'form-control' placeholder=form.instagram.label %}-->
+<!--                                <label for="id_instagram">Instagram</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="col-md-6 col-12">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.youtube|add_class:'form-control' placeholder=form.youtube.label %}-->
+<!--                                <label for="id_youtube">Youtube</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </fieldset>
+
+<!--                <fieldset>-->
+<!--                    <h3>Location</h3>-->
+<!--                    <div class="row">-->
+<!--                        <div class=" col-12 col-md-8 mb-3">-->
+<!--                            <div class="form-floating">-->
+<!--                                {% render_field form.city|add_class:'form-control' placeholder=form.city.label %}-->
+<!--                                <label for="id_city">City</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class=" col-12 col-md mb-3">-->
+<!--                            <div class="form-floating">-->
+<!--                                {% render_field form.state_province|add_class:'form-control' placeholder=form.state_province.label %}-->
+<!--                                <label for="id_state_province">State province</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12">-->
+<!--                            <div class="form-floating mb-3">-->
+<!--                                {% render_field form.country|add_class:'form-control' placeholder=form.country.label %}-->
+<!--                                <label for="id_country">Country</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </fieldset>-->
+            </div>
+        </section>
+        <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save me-3"></i> {% trans 'Save profile' %}</button>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

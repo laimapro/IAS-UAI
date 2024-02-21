@@ -1,0 +1,5 @@
+Hi, {{ obj.name }}!
+Thank you for your contact, we will respond shortly.
+
+Below is the content of your message: {{ obj.message }}
+Phone: {{ obj.phone }}

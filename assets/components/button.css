@@ -1,0 +1,68 @@
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(107, 44, 145, 0.25) !important
+}
+
+.btn-primary:hover {
+    background: var(--color-dark) !important;
+    color: #fff !important;
+    border-color: var(--color-dark) !important;
+}
+
+.btn.btn-accent {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid transparent;
+}
+
+.btn.btn-accent:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn.btn-accent:active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-light {
+    background-color: transparent !important;
+}
+
+.btn.btn-back {
+    color: #fff;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+}
+
+.btn.btn-back:hover {
+    border-color: #fff;
+    background-color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn.btn-back:hover {
+
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25) !important
+}
+
+.btn-post-info {
+    color: #0dcaf0 !important;
+}
+
+.btn-post-info:hover,
+.btn-post-info:focus {
+    background: #0dcaf0;
+    color: #fff !important;
+}
+
+.btn-post-danger {
+    color: #dc3545 !important;
+}
+
+.btn-post-danger:hover,
+.btn-post-danger:focus {
+    background: #dc3545;
+    color: #fff !important;
+}

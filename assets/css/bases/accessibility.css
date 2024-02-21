@@ -1,0 +1,86 @@
+.high-contrast * {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+.high-contrast .card-img-top,
+.high-contrast .candidate-user-picture,
+.high-contrast .card-header,
+.high-contrast .company-avatar,
+.high-contrast .article-content img,
+.high-contrast .article-content-footer span,
+.high-contrast .banner-page {
+    filter: grayscale(100%);
+}
+
+.high-contrast .text-muted {
+    color: rgba(255, 255, 255, 0.35) !important
+}
+
+.high-contrast svg path {
+    fill: #fff !important;
+}
+
+.high-contrast .list-group-item,
+.high-contrast .accordion-item {
+    border: 1px solid #dee2e6;
+}
+
+
+
+.high-contrast .form-floating label,
+.high-contrast .dropdown-menu,
+.high-contrast .card {
+    border-color: #dee2e6 !important;
+}
+
+.high-contrast .navbar-brand {
+    background-color: transparent !important;
+}
+
+.high-contrast .text-white,
+.high-contrast .btn-accent,
+.high-contrast .sb-sidenav a.nav-link {
+
+    color: #fff !important;
+
+}
+
+.high-contrast .sb-topnav {
+    background-color: #000 !important;
+}
+
+.high-contrast .form-floating label {
+    border-right: 0;
+}
+
+.high-contrast .form-floating .form-control~label {
+    border: none !important;
+    padding-top: 0;
+    padding-bottom: 0;
+    top: 15px;
+    height: 25px;
+    opacity: 1 !important;
+    left: 1px;
+}
+
+#accessibility-tools.dropdown-toggle:after {
+    content: none
+}
+
+.high-contrast .btn-primary {
+    color: #fff;
+    background-color: #000;
+    border-color: #fff;
+}
+
+.high-contrast .btn-outline-primary {
+    border-color: #fff;
+}
+
+.high-contrast .search-container {
+    background-color: transparent !important
+}
+.high-contrast .company-container:after,
+.high-contrast .company-container:before {
+    content: none
+}

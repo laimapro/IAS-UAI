@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block content %}
+
+	<div class="p-4 p-md-5 pt-5">
+		<h2 class="mb-4">
+			{% if object.id %}
+				{% trans 'Edit' %}
+			{% else %}
+				{% trans 'New' %}
+			{% endif %} <span class="text-bold">{% trans 'Project' %}</span>
+		</h2>
+
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col">
+					<div class="form-floating mb-3">
+						{% render_field form.pj_name|add_class:'form-control' placeholder=form.pj_name.label %}
+						<label>{% trans 'Project name' %}</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-floating mb-3">
+						{% render_field form.pj_code|add_class:'form-control' placeholder=form.pj_code.label %}
+						<label>{% trans 'Project code' %}</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-end mt-4 mb-0">
+				<button type="submit" class="btn btn-primary"><i class="fas fa-save me-3"></i>{% trans 'Save' %}</button>
+				
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

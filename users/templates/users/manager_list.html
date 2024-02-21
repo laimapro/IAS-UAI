@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="p-4 p-md-5 pt-5">
+	<h2 class="article-title">All <span class="text-bold">Companies</span></h2>
+
+	<section class="row">
+		{% for company in object_list %}
+		{% if company.banner %}
+		<div class="card-content card-company col-12 col-md-4 col-xl-3 mb-3" onclick="location.href='{% url 'company_detail' company.id %}'">
+			<div class="card" title="Click to open {{ company.name }}'s profile">
+				<header style="background-image: url({{ company.banner.url }})" class="card-header">
+					{% if company.picture %}
+					<img src="{{ company.picture.url }}" width="150" height="150" class="rounded company-avatar" alt="{{ company.picture_description }}">
+					{% endif %}
+
+				</header>
+
+
+
+			</div>
+		</div>
+		{% endif %}
+		{% empty %}
+		<p>No records found.</p>
+		{% endfor %}
+	</section>
+</div>
+{% endblock %}

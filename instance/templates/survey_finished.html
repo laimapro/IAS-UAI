@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="container-fluid p-5">
+        <h1>{% trans 'Thank you for participating in the survey' %}!</h1><br>
+        <a href="{% url 'pj_list' %}" class="btn btn-primary">{% trans 'My Projects' %}</a>
+    </div>
+
+{% endblock %}

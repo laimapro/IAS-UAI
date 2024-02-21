@@ -1,0 +1,12 @@
+.footer-site {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.footer-site a {
+    color: #fff !important;
+}
+
+.footer-credits {
+    /* opacity: 0.25; */
+}

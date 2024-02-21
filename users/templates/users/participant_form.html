@@ -1,0 +1,72 @@
+{% extends 'account_base.html' %}
+{% block title %}Login{% endblock %}
+
+{% load i18n %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<main class="form-user d-flex align-items-center justify-content-center">
+    <div class="col-md-6 col-lg-5 col-12">
+        <div class="p-3">
+            <h1 class="m-0">
+                <a accesskey="h" title="Go to Home" href="{% url 'home' %}">
+                    <img class="d-block mx-auto" width="275px" src="{% static 'logo-completa.svg' %}" alt="On a blue post-it with its right top edge folded, The acronym Umain is spelled with  a purple u and yellow m,a,i,n , all in lower case">
+                </a>
+            </h1>
+
+            <fieldset class="p-3 mt-3 card shadow-lg border-0 rounded-lg">
+                <legend role="heading" aria-level="2" class="text-center font-weight-light mb-3 mt-3">{% trans 'Create an account' %}!</legend>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for error in field.errors %}
+                    <div class="alert alert-danger d-flex flex-column align-items-start" role="alert">
+                        <div class="fw-bold"><i class="fas fa-exclamation-triangle me-3"></i> ERROR</div>
+                        <p class="d-block">{{ error }}</p>
+                    </div>
+                    {% endfor %}
+                    <div class="form-floating mb-3">
+                        {% render_field form.name|add_class:'form-control' placeholder=form.name.label %}
+                        <label>Name of candidate</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% render_field form.email|add_class:'form-control' placeholder=form.email.label %}
+                        <label>Email</label>
+                        {{ form.email.errors }}
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% render_field form.password1|add_class:'form-control'|attr:"type:password" placeholder=form.password1.label %}
+                        <label>Password</label>
+                        {{ form.password1.errors }}
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% render_field form.password2|add_class:'form-control'|attr:"type:password" placeholder=form.password2.label %}
+                        <label>Confirm Password</label>
+                        {{ form.password2.errors }}
+                    </div>
+                    <div class="form-check mb-3">
+                        {% render_field form.i_agree placeholder=form.i_agree.label %}
+                        <span class="form-check-label" for="">
+                            I agree to the <a accesskey="v" href="{% url 'terms_service' %}" title="Opens in new window" target="_blank">terms of service</a>, <a accesskey="p" href="{% url 'privacy' %}" title="Opens in new window" target="_blank">privacy</a> and <a accesskey="o" href="{% url 'commenting_policy' %}" title="Opens in new window" target="_blank">commenting policy</a> of this website.
+                        </span>
+                        {{ form.i_agree.errors }}
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+                        <input type="submit" class="btn btn-primary" value="{% trans 'CREATE MY ACCOUNT' %}">
+                    </div>
+                </form>
+                <div class="text-center py-3 small">{% trans 'I have an account' %}. <a href="{% url 'login' %}">{% trans 'Sign in' %}!</a></div>
+            </fieldset>
+            <div class=" d-flex align-items-center mt-4 justify-content-center">
+                <a accesskey="h" class="btn btn-accent btn-back" href="{% url 'home' %}">
+                    <i class="fa fa-chevron-left me-3 "></i>
+                    <span>Go to Home</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}

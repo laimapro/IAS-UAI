@@ -1,0 +1,21 @@
+@import url('authetication.css');
+
+.form-select-input:focus,
+.form-select:focus,
+
+.form-check-input:focus,
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(107, 44, 145, 0.25) !important;
+    border: 1px solid var(--primary-color);
+    outline: none;
+}
+
+.form-input-group-pill>*:first-child {
+    border-radius: 50rem 0 0 50rem;
+
+}
+
+.form-input-group-pill>*:last-child {
+    border-radius: 0 50rem 50rem 0;
+
+}

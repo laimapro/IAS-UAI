@@ -1,0 +1,21 @@
+.card-company .card-picture {
+    border-radius: .25rem;
+    position: relative;
+}
+
+
+.company-avatar {
+    z-index: 2;
+    border-radius: .25rem;
+    width: 10rem;
+    height: 10rem;
+    background: #fff;
+    border: 3px solid #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+}
+
+.card-company h3 {
+    font-weight: bold;
+    font-size: 1.5rem;
+}

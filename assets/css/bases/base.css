@@ -1,0 +1,14 @@
+@import url('variable.css');
+@import url('general.css');
+@import url('typo.css');
+@import url('footer.css');
+@import url('accessibility.css');
+*::-moz-selection{
+	color: #ffF;
+    background-color: var(--primary-color)
+}
+*::selection{
+	color: #ffF;
+    background-color: var(--primary-color)
+}
+   

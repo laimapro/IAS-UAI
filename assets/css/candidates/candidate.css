@@ -1,0 +1,9 @@
+.candidate-user-picture {
+    height: auto;
+    min-height: 350px;
+    object-fit: cover;
+}
+
+.sb-sidenav .candidate-user-picture {
+    min-height: 175px;
+}

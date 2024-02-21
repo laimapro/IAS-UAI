@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n %}
+
+<div class="p-4 p-md-5 pt-5 scrollarea">
+	<h2 class="article-title">{% trans 'List' %} <span class="text-bold">{% trans 'Projects' %}</span></h2>
+
+	<section class="mt-5 row">
+																																																																										</Projects></span></h3>
+		{% for obj in object_list %}
+		<div class="col-12 col-md-4 col-sm-6 col-xl-3 job-card card-content card-company position-relative pb-4">
+			<div class="card h-100 mb-3">
+				<header style="background-image: url({{ vacancy.company.company.banner.url }})" class="card-header">
+					{% if obj.photo.url %}
+					<img src="{{ obj.company.company.picture.url }}" width="150" height="150"
+						class="rounded company-avatar" alt="{{ company.picture_description }}">
+					{% endif %}
+				</header>
+				<div class="card-body">
+					<div class="card-title">
+						<h3 class="fw-light">
+							<a href="{% url 'pj_detail' obj.id %}"
+								title="Click to open '{{ obj.pj_name }}' detail">
+								{{ obj.pj_name }}
+							</a>
+						</h3>
+					</div>
+				</div>
+				<footer class="card-footer d-flex justify-content-between px-3 pt-3 pb-2 border-top d-block text-muted">
+					<div title="Publish at">
+						<i class="fa fa-calendar-day me-3"></i>{{ obj.created_at|date:'d M Y' }}
+					</div>
+					<a href="{% url 'pj_detail' obj.id %}" title="Click to open '{{ obj.pj_name }}' detail">
+						<i alt="Drawing of a right arrow" class="fa fa-chevron-right"></i>
+					</a>
+				</footer>
+			</div>
+		</div>
+		{% empty %}
+		<p>No records found.</p>
+		{% endfor %}
+	</section>
+
+	{% include 'pagination.html' %}
+
+</div>
+
+{% endblock %}

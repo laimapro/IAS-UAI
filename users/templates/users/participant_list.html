@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="p-4 p-md-5 pt-5">
+	<div class="w-100 article-title d-flex justify-content-between align-items-center">
+		<h2>Meet <span class="fw-bold">our talents</span></h2>
+
+		{% if user.type == 'CANDIDATE' %}
+
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<a style="min-width: 150px"  href="{% url 'candidate_edit' %}" class="btn btn-outline-primary"><i class="fas me-3 fa-cog"></i>My Profile</a>
+			<a style="min-width: 150px"  href="{% url 'my_resume' %}" class="btn btn-outline-secondary"><i class="fas me-3 fa-id-badge"></i>My CV</a>
+		</div>
+
+		{% endif %}
+	</div>
+	<div class="row row-cols-md-3 g-4">
+		{% for object in object_list %}
+		<div class="card-content card-candidate col-12 col-md-4 col-lg-3  mb-3" onclick="location.href='{% url 'candidate_detail' object.id %}'">
+			<div class="card h-100">
+				<img {% if object.picture %} src="{{ object.picture.url }}" {% else %} src="{% static 'picture-not-provided.svg' %}" {% endif %}
+					 class=" col-lg-4 col-md-5 card-picture card-img-top"
+					 alt="{{ object.picture_description }}">
+				<div class="card-body">
+					<h5 class="card-title">
+						<a class="text-truncate d-block" href="{% url 'candidate_detail' object.id %}" title="{{ object.name }}">{% if object.social_name %}
+							{{ object.social_name }}
+							{% else %}
+							{{ object.name }}
+							{% endif %}</a>
+					</h5>
+					<small class="card-text text-muted text-uppercase text-truncate d-block" title="{{ object.state_province }}, {{ object.country }}">
+						<i class="fas fa-map-marker-alt me-3"></i>{{ object.state_province }}, {{ object.country }}
+					</small>
+
+				</div>
+				<footer class="card-footer d-flex justify-content-between px-3 pt-3 pb-2 border-top d-block text-muted">
+					<div>Date joined: <small class="text-muted">{{ object.date_joined|date:'d M Y' }}</small></div>
+					<i class="fa fa-chevron-right"></i>
+				</footer>
+			</div>
+		</div>
+
+		{% empty %}
+		<p>No records found.</p>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

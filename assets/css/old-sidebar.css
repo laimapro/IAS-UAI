@@ -1,0 +1,68 @@
+.sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
+    color: #000;
+}
+
+.sb-sidenav-dark .sb-sidenav-footer {
+    background-color: #efefef;
+}
+
+.sb-sidenav-light {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {
+    color: #000;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link {
+    color: #000;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    color: #000;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
+    color: #000;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link:hover {
+    color: #6b2c91;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link.active {
+    color: #6b2c91;
+}
+
+.sb-sidenav-light .sb-sidenav-menu .nav-link.active .sb-nav-link-icon {
+    color: #6b2c91;
+}
+
+.sb-sidenav-light .sb-sidenav-footer {
+    background-color: #e9ecef;
+}

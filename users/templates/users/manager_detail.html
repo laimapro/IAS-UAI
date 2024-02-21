@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if object.banner %}<div class="banner-company banner-page" style="background-image: url('{{ object.banner.url }}');" title="{{ object.banner_description }}" role="img"></div>{% endif %}
+<div class="col-12 col-md-8 mx-auto mx-auto">
+	<header class="position-relative mb-5 company-header-container">
+		<div class="d-flex justify-content-center align-items-center">
+			{% if object.picture %}
+			<img src="{{ object.picture.url }}" class="rounded me-4 company-avatar" alt="{{ object.picture_description }}">
+			{% endif %}
+			<h2 class="mb-0">{{ object.name }}</h2>
+		</div>
+	</header>
+
+	<div class="nav company-nav nav-pills justify-content-center" id="tabs-tab" role="tablist">
+		<button class="nav-link active" id="tabs-about-tab" data-bs-toggle="pill" data-bs-target="#tabs-about" type="button" role="tab" aria-controls="tabs-about" aria-selected="true">About</button>
+		<button class="nav-link" id="tabs-vacancies-tab" data-bs-toggle="pill" data-bs-target="#tabs-vacancies" type="button" role="tab" aria-controls="tabs-vacancies" aria-selected="false">Open Vacancies</button>
+		<button class="nav-link" id="tabs-responsibilities-tab" data-bs-toggle="pill" data-bs-target="#tabs-responsibilities" type="button" role="tab" aria-controls="tabs-responsibilities" aria-selected="false">Responsibility Programs</button>
+		<button class="nav-link" id="tabs-location-tab" data-bs-toggle="pill" data-bs-target="#tabs-location" type="button" role="tab" aria-controls="tabs-location" aria-selected="false">Additional Information</button>
+	</div>
+	<div class="tab-content pt-4" id="tabs-tabContent">
+		<div class="tab-pane fade show active" id="tabs-about" role="tabpanel" aria-labelledby="tabs-about-tab">
+			<h3 class="h5 px-3 article-title">About</h3>
+			<div class="px-3">
+				{{ object.company_description|safe }}
+				{% if object.company_size %}<p><strong>Company size:</strong> {{ object.company_size }}</p>{% endif %}
+				{% if object.website %}
+				<p><strong>Webpage:</strong> <a href="{{ object.website }}" target="Opens in new window" target="_blank">{{ object.website }}</a></p>
+				{% endif %}
+				{% if object.linkedin %}
+				<p><strong>Linkedin:</strong> <a href="{{ object.linkedin }}" target="Opens in new window" target="_blank">{{ object.linkedin }}</a></p>
+				{% endif %}
+				{% if object.facebook %}
+				<p><strong>Facebook:</strong> <a href="{{ object.facebook }}" target="Opens in new window" target="_blank">{{ object.facebook }}</a></p>
+				{% endif %}
+				{% if object.twitter %}
+				<p><strong>Twitter:</strong> <a href="{{ object.twitter }}" target="Opens in new window" target="_blank">{{ object.twitter }}</a></p>
+				{% endif %}
+				{% if object.instagram %}
+				<p><strong>Instagram:</strong> <a href="{{ object.instagram }}" target="Opens in new window" target="_blank">{{ object.instagram }}</a></p>
+				{% endif %}
+				{% if object.youtube %}
+				<p><strong>Youtube:</strong> <a href="{{ object.youtube }}" target="Opens in new window" target="_blank">{{ object.youtube }}</a></p>
+				{% endif %}
+			</div>
+		</div>
+		<div class="tab-pane fade" id="tabs-vacancies" role="tabpanel" aria-labelledby="tabs-vacancies-tab">
+			<h3 class="h5 px-3 article-title">Vacancies</h3>
+			<div class="row px-3">
+				{% for job in jobs %}
+				<div class="col-12 col-md-4 col-lg-3 job-card card-content position-relative " onclick="location.href='{% url 'job_detail' job.id %}'">
+					<div class="card mb-3">
+						<header style="background-image: url({{ job.photo.url }})" class="card-header">
+							<img src="{{ job.company.company.picture.url }}" width="150" height="150" class="rounded company-avatar" alt="{{ company.picture_description }}">
+						</header>
+						<div class="card-body" title="Click to see detail: ({{ job.vacancies }}) {{ vacancy.title }} / {{ vacancy.company.name }}">
+							<div class="card-title">
+								<span role="heading" aria-level="3" class="">{{ job.title }}</span>
+								<span title="Vacancies: {{ vacanjobcjoby.vacancies }}" class="fw-light job-card-badge position-absolute translate-middle badge rounded-circle bg-danger">
+									{{ job.vacancies }}
+								</span>
+							</div>
+							<footer class="card-footer d-flex justify-content-between px-3 pt-3 pb-2 border-top d-block text-muted">
+								<div title="Publish at">
+									<i class="fa fa-calendar-day me-3"></i>{{ job.created_at|date:'d M Y' }}
+								</div>
+								<i class="fa fa-chevron-right"></i>
+							</footer>
+						</div>
+					</div>
+				</div>
+				{% empty %}
+				<p class="p-4">No records found.</p>
+				{% endfor %}
+			</div>
+
+		</div>
+		<div class="tab-pane fade" id="tabs-responsibilities" role="tabpanel" aria-labelledby="tabs-responsibilities-tab">
+			<div class="px-3">
+				{% if object.social_resp == 'Yes' %}
+				<h3 class="h5 article-title">Social Responsibility</h3>
+				<div>{{ object.social_resp_desc|safe }}</div>
+				{% endif %}
+				{% if object.diversity_commitee == 'Yes' %}
+				<h3 class="mt-4 pt-4 h5 article-title">Diversity Commitee</h3>
+				<div>{{ object.diversity_commitee_desc|safe }}</div>
+				{% endif %}
+				{% if object.inclusion_people == 'Yes' %}
+				<h3 class="mt-4 pt-4 h5 article-title">Inclusion For People With Disabilities</h3>
+				<div>{{ object.inclusion_people_desc|safe }}</div>
+				{% endif %}
+				{% if object.env_responsibility == 'Yes' %}
+				<h3 class="mt-4 pt-4 h5 article-title">Environmental Responsibility</h3>
+				<div>{{ object.env_responsibility_desc|safe }}</div>
+				{% endif %}
+				{% if object.other_programs == 'Yes' %}
+				<h3 class="mt-4 pt-4 h5 article-title">Other Programs Or Actions</h3>
+				<div>{{ object.other_programs_desc|safe }}</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="tab-pane fade" id="tabs-location" role="tabpanel" aria-labelledby="tabs-location-tab">
+			<h3 class="h5 px-3 article-title">Additional Information</h3>
+
+			<ul class="list-group list-group-flush">
+				{% if object.physical_address %}
+				<li class="list-group-item">
+					<strong>Address:</strong>
+					<a title="Open new tab to Google Maps" target="_blank" href="https://www.google.com/maps/search/{{ object.address }}, {{ object.complement }}, {{ object.city }}, {{ object.state }} - {{ object.country }}">
+						{{ object.address }}, {{ object.complement }}, {{ object.city }}, {{ object.state }} - {{ object.country }}
+					</a>
+				</li>
+				{% endif %}
+				{% if object.phone %}<li class="list-group-item"><strong>Phone:</strong> <a href="tel:{{ object.phone }}" title="Cick to call">{{ object.phone }}</a></li>{% endif %}
+				{% if object.email %}<li class="list-group-item"><strong>Email:</strong> <a href="mailto:{{ object.email }}" title="Click to send email">{{ object.email }}</a></li>{% endif %}
+			</ul>
+
+		</div>
+	</div>
+	{% if user.is_staff %}
+	<div class="article-alert alert alert-secondary  my-5" role="alert">
+		<div class="row">
+			<div class="d-none d-md-block col-3">
+				<div class=" d-flex align-items-center justify-content-center h-100"><svg class="svg-inline--fa fa-info fa-w-6 fa-3x" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" data-fa-i2svg="">
+					<path fill="currentColor" d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"></path></svg>
+				</div>
+			</div>
+			<div class="col-12 col-md-9">
+				<h3 class="alert-heading mb-3 h5 px-3 article-title">Only admins can see this!</h3>
+				<ul>
+					<li><strong>Profile manager:</strong> {{ object.profile_manager }}</li>
+					<li><strong>Social name:</strong> {{ object.social_name }}</li>
+					<li><strong>Title and pronoun:</strong> {{ object.title_pronoun }}</li>
+					<li><strong>Phone:</strong> {{ object.phone_manager }}</li>
+					<li><strong>Email:</strong> {{ object.email_manager }}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+</div>
+
+{% endblock %}

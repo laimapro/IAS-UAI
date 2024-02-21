@@ -1,0 +1,81 @@
+{% load i18n %}
+<section class="sb-sidenav accordion flex-nowrap sb-sidenav-light" id="sidenavAccordion">
+    <nav class="sb-sidenav-menu d-flex flex-column" id="main-menu">
+        <div class="nav d-flex flex-column">
+            {% if user.is_authenticated %}
+            <div class="sb-sidenav-menu-heading">
+                {% if user.type == 'COMPANY' %} Manager
+                {% elif user.type == 'COORDINATOR' %} Coordinator
+                {% else %} Admin
+                {% endif %} Menu
+            </div>
+            <div class="position-relative">
+                {% if user.type == 'COMPANY' %}
+                <figure class="mb-2 px-3">
+                    {% if user.company.picture %}
+                    <img class="candidate-user-picture rounded border img-fluid" src="{{ user.company.picture.url }}" alt="{{ user.company.picture_description }}">
+                    {% endif %}
+                    <figcaption class="text-muted pt-2 text-center">
+                        {{ user.name }}
+                    </figcaption>
+                </figure>
+                {% elif user.type == 'COORDINATOR' %}
+                <figure class="mb-2 px-3">
+                    {% if user.coordinator.picture %}
+                    <img class="candidate-user-picture rounded border img-fluid" src="{{ user.coordinator.picture.url }}" alt="{{ user.coordinator.picture_description }}">
+                    {% endif %}
+                    <figcaption class="text-muted pt-2 text-center">
+                        {% if user.coordinator.social_name %}
+                        <span class="px-3">{{ user.coordinator.social_name }}</span>
+                        {% else %}
+                        <span class="px-3">{{ user.name }}</span>
+                        {% endif %}
+                    </figcaption>
+                </figure>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    {% if not user.is_staff %}
+                        {% if user.type == 'COMPANY' %}
+                            <a class="nav-link" href="{% url 'company_edit' %}"> <i alt="{% trans 'Drawing of a gear' %}" class="fas me-3 fa-cog"></i>{% trans 'My profile' %}</a>
+                        {% elif user.type == 'COORDINATOR' %}
+                            <a class="nav-link" href="{% url 'coordinator_edit' %}"> <i alt="{% trans 'A drawing of a gear' %}" class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a>
+                        {% endif %}
+                        <a class="nav-link" href="{% url 'pj_list' %}"> <i alt="{% trans 'Project list' %}" class="fas me-3 fa-cog"></i>{% trans 'My Projects' %}</a>
+                    {% else %}
+                        <a class="nav-link" href="/admin" target="_blank"> <i alt="{% trans 'Admin area' %}" class="fas me-3 fa-cog"></i>{% trans 'Admin area' %}</a>
+                        <a class="nav-link" href="{% url 'pj_list' %}"> <i alt="{% trans 'Projects' %}" class="fas me-3 fa-cog"></i>{% trans 'Projects' %}</a>
+                        <a class="nav-link" href="{% url 'question_batch' %}"> <i alt="{% trans 'Batch proccess' %}" class="fas me-3 fa-cog"></i>{% trans 'Questions database' %}</a>
+                    {% endif %}
+                {% else %}
+
+                {% endif %}
+
+            </div>
+            {% endif %}
+            <div class="sb-sidenav-menu-heading">{% trans "Menu" %}</div>
+            <a accesskey="h" class="nav-link" href="{% url 'home' %}"> <i alt="{% trans 'Drawing of a house' %}" class="sb-nav-link-icon fas fa-home"></i><span>{% trans 'Home Page' %}</span></a>
+            {% if user.is_authenticated %}
+            <a accesskey="d" class="nav-link" href="{% url 'dashboard' %}"> <i alt="{% trans 'A compass' %}" class="sb-nav-link-icon fas fa-tachometer-alt"></i><span>{% trans 'Dashboard' %}</span></a>
+            {% endif %}
+<!--            <a accesskey="c" class="nav-link" href="{% url 'company_list' %}"> <i alt="{% trans 'Drawing of a building' %}" class="sb-nav-link-icon fas fa-building"></i><span>{% trans 'All Companies' %}</span></a>-->
+            <a accesskey="a" class="nav-link" href="{% url 'about_us' %}"> <i alt="{% trans 'Info sign' %}" class="sb-nav-link-icon fas fa-info-circle"></i><span>{% trans 'About us' %}</span></a>
+            <a accesskey="u" class="nav-link" href="{% url 'contact_us' %}"> <i alt="{% trans 'Two black speech bubbles' %}" class="sb-nav-link-icon  fas fa-comments"></i><span>{% trans 'Contact us' %}</span></a>
+            {% if not user.is_authenticated %}
+            <a accesskey="i" class="nav-link" href="{% url 'login' %}"> <i alt="{% trans 'Right Arrow drawing' %}" class="sb-nav-link-icon fas fa-sign-in-alt"></i><span>{% trans 'Sign in' %}</span></a>
+            {% else %}
+            <a class="nav-link" href="{% url 'logout' %}"> <i alt="{% trans 'Left Arrow drawing' %}" class="sb-nav-link-icon fas fa-sign-out-alt"></i><span>{% trans 'Sign out' %}</span></a>
+            {% endif %}
+
+        </div>
+    </nav>
+
+
+    <div class="menu-footer border-top">
+        <a accesskey="p" class="text-decoration-none" href="{% url 'privacy' %}" title="Privacy">{% trans 'Privacy' %}</a>
+        &bull;
+        <a accesskey="v" class="text-decoration-none" href="{% url 'terms_service' %}" title="Terms of Service">{% trans 'Service' %}</a>
+        &bull;
+        <a accesskey="o" class="text-decoration-none" href="{% url 'commenting_policy' %}" title="Commenting Policy">{% trans 'Policy' %}</a>
+    </div>
+</section>

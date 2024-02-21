@@ -1,0 +1,53 @@
+.banner-page {
+    width: 100%;
+    /* height: 50rem; */
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    /* background-attachment: fixed; */
+}
+
+.article-title {
+    font-size: calc(1.475rem + 2vw);
+    line-height: 1.2;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.article-title h2 {
+    font-size: calc(1.475rem + 2vw);
+}
+
+.article-alert {
+    font-size: .875em;
+
+}
+
+.article-alert svg {
+    opacity: 0.5;
+}
+
+.article-content {
+    font-size: 16px;
+}
+
+.article-content img {
+    max-width: 100%;
+    height: auto !important;
+}
+
+.article-content-footer {
+    position: relative;
+    margin: 5rem 0;
+}
+
+.article-content-footer span {
+    background: transparent url(../logo-reduzida.svg) center no-repeat;
+    background-size: contain;
+    width: 38px;
+    height: 38px;
+    display: inline-block;
+}
