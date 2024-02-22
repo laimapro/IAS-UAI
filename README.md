@@ -17,7 +17,7 @@ $ pip install virtualenv
 ```
 On Windows:
 ```sh
-$ virtualenv venv
+$ python -m venv venv
 $ cd venv/scripts
 $ activate
 ```
