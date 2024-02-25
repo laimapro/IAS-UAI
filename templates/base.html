@@ -76,9 +76,15 @@
                     <li><a class="dropdown-item" href="{% url 'password_change' %}"><i class="sb-nav-link-icon fas fa-key me-3"></i>{% trans 'Change password' %}</a></li>
                     {% if not user.is_staff %}
                     {% if user.type == 'COMPANY' %}
-                    <li><a class="dropdown-item" href="{% url 'company_edit' %}"><i class="fas me-3 fa-cog"></i>{% trans 'My profile' %}</a></li>
-                    {% elif user.type == 'CANDIDATE' %}
-                    <li><a class="dropdown-item" href="{% url 'candidate_edit' %}"><i class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'company_edit' %}">
+                        <i class="fas me-3 fa-cog"></i>{% trans 'My profile' %}</a></li>
+                    {% elif user.type == 'PARTICIPANT' %}
+                    <li><a class="dropdown-item" href="{% url 'participant_edit' %}">
+                        <i class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a></li>
+                    {% elif user.type == 'COORDINATOR' %}
+                    <li><a class="dropdown-item" href="{% url 'coordinator_edit' %}">
+                        <i class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a></li>
+
                     {% endif %}
                     <li>
                         <hr class="dropdown-divider" />

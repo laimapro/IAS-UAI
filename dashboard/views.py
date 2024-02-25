@@ -76,23 +76,29 @@ class Dashboard(View):
 
     def get_context_data(self, **kwargs):
         context = {}
-        user_pj = None
+        user_coordinator = None
+        user_manager = None
 
         if hasattr(self.request.user, 'coordinator'):
             print('Coordinator ID: ', self.request.user.coordinator.id)
-            user_pj = self.request.user.coordinator
+            user_coordinator = self.request.user.coordinator
         elif hasattr(self.request.user, 'manager'):
             print('Manager ID: ', self.request.user.manager.id)
-            user_pj = self.request.user.manager
+            user_manager = self.request.user.manager
 
         # Filtrando os dados do banco de dados
         queryset = self.get_queryset()
         categories = Category.objects.all()
         instances = Instance.objects.all()
 
-        projects_manager = Project.objects.filter(manager=user_pj)
-        print('User PJ: ', user_pj)
-        print('Project Manager: ', projects_manager)
+        if user_coordinator:
+            projects_user = Project.objects.filter(coordinator=user_coordinator)
+            print('User PJ: ', user_coordinator)
+            print('Project Manager: ', projects_user)
+        if user_manager:
+            projects_user = Project.objects.filter(manager=user_manager)
+            print('User PJ: ', user_manager)
+            print('Project Manager: ', projects_user)
 
         # Obtendo parâmetros de filtragem
         category_id = self.request.GET.get('category_id')
@@ -101,8 +107,8 @@ class Dashboard(View):
         participant_id = self.request.GET.get('participant_id')
 
         # Filtrando os resultados do queryset para incluir apenas os projetos do usuário logado
-        if user_pj:
-            queryset = queryset.filter(instance_attempt_id__instance_id__instance_project__in=projects_manager)
+        if user_coordinator or user_manager:
+            queryset = queryset.filter(instance_attempt_id__instance_id__instance_project__in=projects_user)
 
         # Convertendo os dados em um DataFrame do Pandas
         data = {

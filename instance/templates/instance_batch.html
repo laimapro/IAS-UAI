@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block content %}
+
+	{% if form.errors %}
+        <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+	<div class="p-4 p-md-5 pt-5">
+		<h2 class="mb-4">
+			Importar <span class="text-bold">{% trans 'Instances' %}</span>
+		</h2>
+
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.media }}
+			<div class="row">
+				<div class="col">
+
+					<div class="form-group mb-3">
+                        <input type="file" class="form-control-file" id="word_filw" name="word_file" />
+						<br><label>{% trans 'Word file (docx) with questions' %}</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="d-flex align-items-center justify-content-end mt-4 mb-0">
+				<button type="submit" class="btn btn-primary"><i class="fas fa-save me-3"></i>{% trans 'Save' %}</button>
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

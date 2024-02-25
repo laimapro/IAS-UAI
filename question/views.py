@@ -10,7 +10,7 @@ class QuestionBatchView(FormView):
     model = Question
     template_name = 'question/question_form.html'
     form_class = BatchProcessForm
-    success_url = reverse_lazy('question_batch')  # Substitua 'success_url' pela sua URL de sucesso
+    success_url = reverse_lazy('question_batch')
     success_message = "Questions were saved successfully"
 
     def form_valid(self, form):

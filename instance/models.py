@@ -12,7 +12,7 @@ class Instance(models.Model):
     instance_project = models.ForeignKey(Project, related_name='instances', on_delete=models.CASCADE,
                                          verbose_name=_('Project'))
     title = models.CharField(_('Title'), max_length=255)
-    description = models.TextField(_('Description'), max_length=255, blank=True, null=True)
+    description = models.TextField(_('Generating situation'), max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -33,7 +33,7 @@ class QuestionInstance(models.Model):
         verbose_name_plural = _('Question Instances')
 
     def __str__(self):
-        return self.question_pj
+        return self.question_pj.title
 
 
 class InstanceAttempt(models.Model):
@@ -47,6 +47,9 @@ class InstanceAttempt(models.Model):
     class Meta:
         verbose_name = _('Instance Attempt')
         verbose_name_plural = _('Instance Attempts')
+
+    def __str__(self):
+        return self.instance_id.title
 
 
 class InstanceAttemptAnswer(models.Model):
@@ -65,3 +68,5 @@ class InstanceAttemptAnswer(models.Model):
         verbose_name = _('Instance Attempt Answer')
         verbose_name_plural = _('Instance Attempt Answers')
 
+    def __str__(self):
+        return self.question_id.title

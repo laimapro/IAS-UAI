@@ -229,9 +229,9 @@ class ParticipantEditView(SuccessMessageMixin, UpdateView):
     template_name = 'users/participant_edit.html'
     fields = ['name', 'email', 'picture', 'picture_description', 'social_name', 'title_pronoun',
               'gender_identity', 'other_gender', 'sexual_orientation', 'other_orientation',
-              'desability', 'other_desability', 'birth_date']
-    success_url = reverse_lazy('candidate_edit')
-    success_message = "Profile was updated successfully"
+              'desability', 'other_desability', 'birth_date', 'language']
+    success_url = reverse_lazy('participant_edit')
+    success_message = _("Profile was updated successfully")
 
     def get_object(self, *args, **kwargs):
         obj = self.model.objects.get(pk=self.request.user)

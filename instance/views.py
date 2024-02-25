@@ -1,24 +1,117 @@
 import random
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, View
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
 from project.models import Project
-from question.models import Question, Option
+from question.models import Question, Option, Category
 from .models import Instance, InstanceAttempt, QuestionInstance, InstanceAttemptAnswer
 from .forms import CreateInstanceForm
 import random
+from docx import Document
+
+
+class ImportInstancesView(LoginRequiredMixin, View):
+    template_name = 'instance_batch.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+
+        project_obj = Project.objects.filter(id=kwargs['project_id']).first()
+
+        if 'word_file' in request.FILES:
+            word_file = request.FILES['word_file']
+            document = Document(word_file)
+            # print('KWARGS: ', kwargs)
+
+            current_instance = None
+            current_category = None
+            current_question = None
+            new_option = None
+
+            for paragraph in document.paragraphs:
+                if paragraph.text.startswith('Título:'):
+                    instance_title = paragraph.text.replace('Título:', '').strip()
+                    current_instance = Instance.objects.filter(title=instance_title,
+                                                               instance_project=project_obj).first()
+                    if not current_instance:
+                        current_instance = Instance.objects.create(title=instance_title, instance_project=project_obj)
+                    # print('Instance: ', current_instance)
+                elif paragraph.text.startswith('Situação Geradora:'):
+                    instance_situation = paragraph.text.replace('Situação Geradora:', '').strip()
+                    current_instance.description = instance_situation
+                    current_instance.save()
+                    # print(current_instance)
+                elif paragraph.text.startswith('Categoria:'):
+                    # Nova categoria encontrada
+                    category_text = paragraph.text.replace('Categoria:', '').strip()
+                    categories = Category.objects.filter(title=category_text)
+                    if categories.exists():
+                        current_category = categories.first()
+                    else:
+                        current_category = Category.objects.create(title=category_text)
+                elif paragraph.text.startswith('Pergunta Geradora:'):
+                    # Nova pergunta encontrada
+                    question_text = paragraph.text.replace('Pergunta Geradora:', '').strip()
+                    questions = Question.objects.filter(title=question_text)
+                    # print('Question Text: ', question_text)
+                    # print('Questions: ', questions)
+                    # print('Current Category: ', current_category)
+                    if not current_category:
+                        current_category = Category.objects.get(title='Geral')
+                        # print('Categoria: ', current_category.title)
+                    if questions.exists():
+                        # print('Questão existe: ', questions.first())
+                        current_question = questions.first()
+                    else:
+                        current_question = Question.objects.create(category=current_category, title=question_text)
+                        # print('Questão não existe: ', current_question)
+                    # Cria uma instância da pergunta se houver uma instância identificada
+                    if current_instance:
+                        question_instance = QuestionInstance.objects.filter(question_pj=current_question,
+                                                                            instance_pj=current_instance)
+                        print('Question instance filter: ', question_instance)
+                        if not question_instance.exists():
+                            print('Question Instance Não Existe!')
+                            QuestionInstance.objects.create(question_pj=current_question,
+                                                            instance_pj=current_instance)
+                elif paragraph.text.startswith('Resposta:'):
+                    correct = False
+                    option_text = paragraph.text.replace('Resposta:', '').strip()
+                    feedback = 'None'
+                    if '(C)' in option_text:
+                        # print('Passou Opção correta')
+                        option_text = option_text.replace('(C)', '').strip()
+                        correct = True
+                    opt = Option.objects.filter(text=option_text, question=current_question)
+                    if not opt.exists():
+                        new_option = Option.objects.create(question=current_question, text=option_text,
+                                                           feedback=feedback, correct=correct)
+                    else:
+                        new_option = opt.first()
+                        new_option.feedback = feedback
+                        new_option.correct = correct
+                        new_option.save()
+                elif paragraph.text.startswith('Comentário:'):
+                    feedback = paragraph.text.replace('Comentário:', '').strip()
+                    if new_option is not None:
+                        new_option.feedback = feedback
+                        new_option.save()
+        print('PROJECT OBJ: ', project_obj.id)
+
+        return redirect('instance_import', project_id=project_obj.id)
 
 
 class CreateInstanceView(CreateView):
     model = Instance
     form_class = CreateInstanceForm
-
-    # success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         project_id = self.kwargs.get('project_id')
@@ -154,7 +247,7 @@ class SurveyQuestionView(TemplateView):
             option = Option.objects.get(id=option_id)
             attempt_number = 1
             if instance_attempt_answer_obj:
-                attempt_number = int(instance_attempt_answer_obj.attempt_number)+1
+                attempt_number = int(instance_attempt_answer_obj.attempt_number) + 1
             if question_id and option_id:
                 instance_attempt_answer_created = InstanceAttemptAnswer.objects.create(
                     question_id=question,
@@ -181,14 +274,3 @@ class SurveyQuestionView(TemplateView):
 
 class SurveyFinishedView(TemplateView):
     template_name = 'survey_finished.html'
-    #
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     instance_id = kwargs['instance_id']
-    #     instance = Instance.objects.get(id=instance_id)
-    #     context['instance'] = instance
-    #     attempt_exists = InstanceAttempt.objects.filter(user_id=self.request.user.participant,
-    #     instance_id=instance).first()
-    #     if attempt_exists:
-    #         context['attempt'] = attempt_exists
-    #     return context

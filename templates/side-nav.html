@@ -37,9 +37,11 @@
                 {% if user.is_authenticated %}
                     {% if not user.is_staff %}
                         {% if user.type == 'COMPANY' %}
-                            <a class="nav-link" href="{% url 'company_edit' %}"> <i alt="{% trans 'Drawing of a gear' %}" class="fas me-3 fa-cog"></i>{% trans 'My profile' %}</a>
+                            <a class="nav-link" href="{% url 'company_edit' %}"> <i alt="{% trans 'My Profile' %}" class="fas me-3 fa-cog"></i>{% trans 'My profile' %}</a>
                         {% elif user.type == 'COORDINATOR' %}
-                            <a class="nav-link" href="{% url 'coordinator_edit' %}"> <i alt="{% trans 'A drawing of a gear' %}" class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a>
+                            <a class="nav-link" href="{% url 'coordinator_edit' %}"> <i alt="{% trans 'My Profile' %}" class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a>
+                        {% elif user.type == 'PARTICIPANT' %}
+                            <a class="nav-link" href="{% url 'participant_edit' %}"> <i alt="{% trans 'My Profile' %}" class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a>
                         {% endif %}
                         <a class="nav-link" href="{% url 'pj_list' %}"> <i alt="{% trans 'Project list' %}" class="fas me-3 fa-cog"></i>{% trans 'My Projects' %}</a>
                     {% else %}

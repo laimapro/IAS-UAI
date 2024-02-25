@@ -35,7 +35,7 @@ class CompanyManager(BaseUserManager):
             raise ValueError('Email is required')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, type='COMPANY', **extra_fields)
+        user = self.model(email=email, type='STAFF', **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -65,7 +65,7 @@ class CoordinatorManager(BaseUserManager):
             raise ValueError('Email is required')
 
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        user = self.model(email=email,  type='COORDINATOR', **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user

@@ -12,7 +12,7 @@ class CreateInstanceForm(forms.ModelForm):
 
     class Meta:
         model = Instance
-        fields = ['title', 'description', 'word_file']
+        fields = ['word_file']
 
     def process_word_file(self):
         word_file = self.cleaned_data['word_file']

@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Question(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(_('Title'), max_length=255)
+    title = models.CharField(_('Title'), max_length=355)
     category = models.ForeignKey(Category, related_name='questions', on_delete=models.CASCADE)
 
     class Meta:

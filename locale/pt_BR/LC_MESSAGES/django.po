@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-17 14:04+0000\n"
+"POT-Creation-Date: 2024-02-22 19:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,16 @@ msgid "English"
 msgstr "Inglês"
 
 #: ias/settings.py:148 users/models.py:44
-#, fuzzy
-#| msgid "Portuguese"
 msgid "Portuguese (Brazil)"
 msgstr "Português (Brasil)"
 
-#: instance/admin.py:25 instance/models.py:20 instance/models.py:35
+#: instance/admin.py:25 instance/models.py:20 instance/models.py:42
 #: instance/templates/instance/instance_form.html:23
 msgid "Instance"
 msgstr "Instância"
 
 #: instance/models.py:13 instance/templates/survey_start.html:9
-#: project/models.py:18 project/templates/project/project_form.html:13
+#: project/models.py:19 project/templates/project/project_form.html:13
 msgid "Project"
 msgstr "Projeto"
 
@@ -42,58 +40,77 @@ msgstr "Projeto"
 msgid "Title"
 msgstr "Título"
 
-#: instance/models.py:15 project/models.py:11
-#, fuzzy
-#| msgid "Picture description"
-msgid "Description"
-msgstr "Descrição da imagem"
+#: instance/models.py:15
+msgid "Generating situation"
+msgstr "Situação geradora"
 
 #: instance/models.py:21 instance/templates/instance/instance_detail.html:63
-#: project/templates/project/project_detail.html:53
+#: instance/templates/instance_batch.html:19
+#: project/templates/project/project_detail.html:56
 msgid "Instances"
 msgstr "Instâncias"
 
-#: instance/models.py:34
+#: instance/models.py:32
+#, fuzzy
+#| msgid "Questions"
+msgid "Question Instance"
+msgstr "Questões"
+
+#: instance/models.py:33
+#, fuzzy
+#| msgid "Instances"
+msgid "Question Instances"
+msgstr "Instâncias"
+
+#: instance/models.py:41
 msgid "User"
 msgstr ""
 
-#: instance/models.py:36
+#: instance/models.py:43
 msgid "Status Attempt"
 msgstr ""
 
-#: instance/models.py:37 instance/models.py:50
+#: instance/models.py:44 instance/models.py:64
 #: instance/templates/instance/instance_detail.html:45
 #: instance/templates/survey_start.html:10
-#: project/templates/project/project_detail.html:35
+#: project/templates/project/project_detail.html:38
 #: question/templates/question/question_detail.html:35
 msgid "Created"
 msgstr "Criado"
 
-#: instance/models.py:45 question/models.py:25
+#: instance/models.py:48 instance/models.py:61
+msgid "Instance Attempt"
+msgstr "Tentativa"
+
+#: instance/models.py:49
+msgid "Instance Attempts"
+msgstr "Tentativas"
+
+#: instance/models.py:59 question/models.py:25
 msgid "Question"
 msgstr "Questão"
 
-#: instance/models.py:46 question/models.py:39
+#: instance/models.py:60 question/models.py:39
 msgid "Option"
 msgstr "Opção"
 
-#: instance/models.py:47
-#, fuzzy
-#| msgid "Instance"
-msgid "Instance Attempt"
-msgstr "Instância"
-
-#: instance/models.py:48
+#: instance/models.py:62
 msgid "Likert scale"
-msgstr ""
+msgstr "Nota"
 
-#: instance/models.py:49
-#, fuzzy
-#| msgid "Phone Manager"
+#: instance/models.py:63
 msgid "Attempt number"
-msgstr "Fone do gerente"
+msgstr "Número da tentativa"
 
-#: instance/templates/instance/instance_detail.html:25 project/models.py:14
+#: instance/models.py:68
+msgid "Instance Attempt Answer"
+msgstr "Resposta"
+
+#: instance/models.py:69
+msgid "Instance Attempt Answers"
+msgstr "Respostas"
+
+#: instance/templates/instance/instance_detail.html:25 project/models.py:15
 #: project/templates/project/project_detail.html:15
 #: question/templates/question/question_detail.html:15 users/models.py:113
 msgid "Coordinator"
@@ -102,42 +119,42 @@ msgstr "Coordenador"
 #: instance/templates/instance/instance_detail.html:29
 #: instance/templates/instance/instance_detail.html:39
 #: project/templates/project/project_detail.html:19
-#: project/templates/project/project_detail.html:29
+#: project/templates/project/project_detail.html:32
 msgid "Waiting for activation"
 msgstr "Aguardando ativação"
 
 #: instance/templates/instance/instance_detail.html:32
 #: instance/templates/instance/instance_detail.html:42
-#: project/templates/project/project_detail.html:22
-#: project/templates/project/project_detail.html:32
+#: project/templates/project/project_detail.html:24
+#: project/templates/project/project_detail.html:35
 #: question/templates/question/question_detail.html:22
 #: question/templates/question/question_detail.html:32
 msgid "Send invitation"
 msgstr "Enviar convite"
 
-#: instance/templates/instance/instance_detail.html:35 project/models.py:15
-#: project/templates/project/project_detail.html:25
+#: instance/templates/instance/instance_detail.html:35 project/models.py:16
+#: project/templates/project/project_detail.html:28
 #: question/templates/question/question_detail.html:25
 msgid "Manager"
 msgstr "Gerente"
 
 #: instance/templates/instance/instance_detail.html:50
-#: project/templates/project/project_detail.html:40 users/models.py:173
+#: project/templates/project/project_detail.html:43 users/models.py:173
 msgid "Participants"
 msgstr "Participantes"
 
 #: instance/templates/instance/instance_detail.html:58
-#: project/templates/project/project_detail.html:48
+#: project/templates/project/project_detail.html:51
 msgid "Invite participant"
 msgstr "Convidar participante"
 
 #: instance/templates/instance/instance_detail.html:73
-#: project/templates/project/project_detail.html:70
+#: project/templates/project/project_detail.html:76
 msgid "Add new instance"
 msgstr "Add nova instância"
 
 #: instance/templates/instance/instance_detail.html:74
-#: project/templates/project/project_detail.html:71
+#: project/templates/project/project_detail.html:77
 #, fuzzy
 #| msgid "Word file"
 msgid "Import Word file"
@@ -145,6 +162,7 @@ msgstr "Arquivo Word(docx)"
 
 #: instance/templates/instance/instance_form.html:20
 #: project/templates/project/project_form.html:10
+#: users/templates/users/participant_edit.html:12
 msgid "Edit"
 msgstr "Editar"
 
@@ -166,10 +184,12 @@ msgid "Instance description"
 msgstr "Descrição da imagem"
 
 #: instance/templates/instance/instance_form.html:41
+#: instance/templates/instance_batch.html:30
 msgid "Word file (docx) with questions"
 msgstr "Arquivo Word (docx) com as perguntas"
 
 #: instance/templates/instance/instance_form.html:47
+#: instance/templates/instance_batch.html:36
 #: project/templates/project/project_form.html:34
 #: question/templates/question/question_form.html:25
 msgid "Save"
@@ -181,15 +201,19 @@ msgstr "Salvar"
 msgid "List"
 msgstr "Listar"
 
-#: instance/templates/instance/instance_list.html:6 project/models.py:19
+#: instance/templates/instance/instance_list.html:6 project/models.py:20
 #: project/templates/project/project_list.html:6
-#: question/templates/question/question_list.html:6 templates/side-nav.html:47
+#: question/templates/question/question_list.html:6 templates/side-nav.html:49
 msgid "Projects"
 msgstr "Projetos"
 
 #: instance/templates/survey_finished.html:7
 msgid "Thank you for participating in the survey"
 msgstr "Obrigado por participar da pesquisa"
+
+#: instance/templates/survey_finished.html:8 templates/side-nav.html:46
+msgid "My Projects"
+msgstr "Meus Projetos"
 
 #: instance/templates/survey_question.html:53
 msgid "Submit survey"
@@ -208,27 +232,33 @@ msgstr "Responder"
 msgid "Iniciar pesquisa"
 msgstr "Iniciar pesquisa"
 
-#: instance/views.py:36
+#: instance/views.py:117
 #, fuzzy
 #| msgid "Profile was updated successfully"
 msgid "Instance created successfully"
 msgstr "Perfil atualizado com sucesso"
 
-#: instance/views.py:40
+#: instance/views.py:121
 msgid "Word file not found. Operation cancelled"
 msgstr "Arquivo word não encontrado. Operação cancelada"
 
-#: instance/views.py:134
+#: instance/views.py:216
 msgid "Thank you for rating our question correct"
 msgstr "Obrigado por avaliar nossa pergunta correta"
 
-#: project/models.py:9 project/templates/project/project_form.html:22
+#: project/models.py:10 project/templates/project/project_form.html:22
 msgid "Project name"
 msgstr "Nome do projeto"
 
-#: project/models.py:10 project/templates/project/project_form.html:28
+#: project/models.py:11 project/templates/project/project_form.html:28
 msgid "Project code"
 msgstr "Código do projeto"
+
+#: project/models.py:12
+#, fuzzy
+#| msgid "Picture description"
+msgid "Description"
+msgstr "Descrição da imagem"
 
 #: project/templates/project/participant_invitation.html:17
 #: project/templates/project/project_invitation.html:17
@@ -237,7 +267,8 @@ msgstr "Digite o e-mail do participante"
 
 #: project/templates/project/participant_invitation.html:26
 #: project/templates/project/project_invitation.html:27 users/models.py:51
-#: users/templates/users/coordinator_form.html:38
+#: users/models.py:192 users/templates/users/coordinator_form.html:38
+#: users/templates/users/participant_edit.html:164
 msgid "Email"
 msgstr "E-mail"
 
@@ -248,7 +279,7 @@ msgstr "E-mail"
 msgid "Send invite"
 msgstr "Enviar convite"
 
-#: project/templates/project/project_detail.html:63
+#: project/templates/project/project_detail.html:66
 msgid "Answer survey"
 msgstr "Responder pesquisa"
 
@@ -298,6 +329,7 @@ msgid "Documentation"
 msgstr "Documentação"
 
 #: templates/admin/base.html:55 templates/base.html:76
+#: templates/registration/password_change_form.html:17
 msgid "Change password"
 msgstr "Mudar senha"
 
@@ -313,66 +345,67 @@ msgstr ""
 msgid "Accessibility tools"
 msgstr "Ferramentas de acessibilidade"
 
-#: templates/base.html:79 templates/side-nav.html:40
+#: templates/base.html:80 templates/side-nav.html:40
 #: users/templates/users/manager_edit.html:3
 msgid "My profile"
 msgstr "Meu perfil"
 
-#: templates/base.html:81 templates/side-nav.html:42
+#: templates/base.html:83 templates/base.html:86 templates/side-nav.html:40
+#: templates/side-nav.html:42 templates/side-nav.html:44
 msgid "My Profile"
 msgstr "Meu perfil"
 
-#: templates/base.html:88 templates/side-nav.html:46
+#: templates/base.html:94 templates/side-nav.html:48
 msgid "Admin area"
 msgstr "Área administrativa"
 
-#: templates/base.html:91 templates/side-nav.html:67
+#: templates/base.html:97 templates/side-nav.html:69
 msgid "Sign out"
 msgstr "Sair"
 
-#: templates/base.html:93 templates/side-nav.html:65
+#: templates/base.html:99 templates/side-nav.html:67
 #: users/templates/users/coordinator_form.html:67
 #: users/templates/users/participant_form.html:59
 msgid "Sign in"
 msgstr "Entrar"
 
-#: templates/base.html:118
+#: templates/base.html:124
 msgid "Back to Home"
 msgstr "Voltar a Home"
 
-#: templates/base.html:122
+#: templates/base.html:128
 msgid "Back to top"
 msgstr "Voltar ao topo"
 
-#: templates/base.html:131
+#: templates/base.html:137
 msgid "SIGN UP TO OUR"
 msgstr "INSCREVA-SE NA NOSSA"
 
-#: templates/base.html:132
+#: templates/base.html:138
 msgid "NEWSLETTER"
 msgstr ""
 
-#: templates/base.html:137
+#: templates/base.html:143
 msgid "Enjoy our Facebook page"
 msgstr "Aproveite nossa página no Facebook"
 
-#: templates/base.html:142
+#: templates/base.html:148
 msgid "Follow our Instagram Profile"
 msgstr "Siga nosso perfil no Instagram"
 
-#: templates/base.html:147
+#: templates/base.html:153
 msgid "Subscribe to our Youtube"
 msgstr "Inscreva-se em nosso Youtube"
 
-#: templates/base.html:152
+#: templates/base.html:158
 msgid "Follow our Twitter profile"
 msgstr "Siga nosso perfil no Twitter"
 
-#: templates/base.html:157
+#: templates/base.html:163
 msgid "Follow our Linkedin Page"
 msgstr "Siga nossa página no Linkedin"
 
-#: templates/base.html:163
+#: templates/base.html:169
 msgid "All rights reserved"
 msgstr "Todos os direitos reservados"
 
@@ -412,95 +445,83 @@ msgstr ""
 msgid "Change my password"
 msgstr "Mudar minha senha"
 
-#: templates/side-nav.html:40
-msgid "Drawing of a gear"
-msgstr ""
-
-#: templates/side-nav.html:42
-msgid "A drawing of a gear"
-msgstr ""
-
-#: templates/side-nav.html:44
+#: templates/side-nav.html:46
 #, fuzzy
 #| msgid "Projects"
 msgid "Project list"
 msgstr "Projetos"
 
-#: templates/side-nav.html:44
-msgid "My Projects"
-msgstr "Meus Projetos"
-
-#: templates/side-nav.html:48
+#: templates/side-nav.html:50
 msgid "Batch proccess"
 msgstr "Processo em lote"
 
-#: templates/side-nav.html:48
+#: templates/side-nav.html:50
 msgid "Questions database"
 msgstr "Banco de questões"
 
-#: templates/side-nav.html:56
+#: templates/side-nav.html:58
 msgid "Menu"
 msgstr ""
 
-#: templates/side-nav.html:57
+#: templates/side-nav.html:59
 msgid "Drawing of a house"
 msgstr ""
 
-#: templates/side-nav.html:57
+#: templates/side-nav.html:59
 msgid "Home Page"
 msgstr "Página inicial"
 
-#: templates/side-nav.html:59
+#: templates/side-nav.html:61
 msgid "A compass"
 msgstr ""
 
-#: templates/side-nav.html:59
+#: templates/side-nav.html:61
 msgid "Dashboard"
 msgstr ""
 
-#: templates/side-nav.html:61
+#: templates/side-nav.html:63
 msgid "Drawing of a building"
 msgstr ""
 
-#: templates/side-nav.html:61
+#: templates/side-nav.html:63
 #, fuzzy
 #| msgid "Companies"
 msgid "All Companies"
 msgstr "Todas as empresas"
 
-#: templates/side-nav.html:62
+#: templates/side-nav.html:64
 msgid "Info sign"
 msgstr ""
 
-#: templates/side-nav.html:62
+#: templates/side-nav.html:64
 msgid "About us"
 msgstr "Sobre nós"
 
-#: templates/side-nav.html:63
+#: templates/side-nav.html:65
 msgid "Two black speech bubbles"
 msgstr ""
 
-#: templates/side-nav.html:63
+#: templates/side-nav.html:65
 msgid "Contact us"
 msgstr "Fale conosco"
 
-#: templates/side-nav.html:65
+#: templates/side-nav.html:67
 msgid "Right Arrow drawing"
 msgstr ""
 
-#: templates/side-nav.html:67
+#: templates/side-nav.html:69
 msgid "Left Arrow drawing"
 msgstr ""
 
-#: templates/side-nav.html:75
+#: templates/side-nav.html:77
 msgid "Privacy"
 msgstr "Privacidade"
 
-#: templates/side-nav.html:77
+#: templates/side-nav.html:79
 msgid "Service"
 msgstr "Serviço"
 
-#: templates/side-nav.html:79
+#: templates/side-nav.html:81
 msgid "Policy"
 msgstr "Política"
 
@@ -542,15 +563,15 @@ msgstr "Fone do gerente"
 msgid "Social Name"
 msgstr "Nome social"
 
-#: users/models.py:101
+#: users/models.py:101 users/templates/users/participant_edit.html:99
 msgid "Gender identity"
 msgstr "Identidade de gênero"
 
-#: users/models.py:102
+#: users/models.py:102 users/templates/users/participant_edit.html:107
 msgid "Other gender"
 msgstr "Outro gênero"
 
-#: users/models.py:103
+#: users/models.py:103 users/templates/users/participant_edit.html:120
 msgid "Sexual orientation"
 msgstr "Orientação sexual"
 
@@ -558,13 +579,14 @@ msgstr "Orientação sexual"
 msgid "Other orientation"
 msgstr "Outra orientação"
 
-#: users/models.py:105
+#: users/models.py:105 users/templates/users/participant_edit.html:135
+#: users/templates/users/participant_edit.html:140
 msgid "Desability"
 msgstr "Deficiência"
 
-#: users/models.py:106
+#: users/models.py:106 users/templates/users/participant_edit.html:147
 msgid "Other desability"
-msgstr ""
+msgstr "Outra deficiência"
 
 #: users/models.py:107 users/models.py:186
 msgid "Title and Pronoun"
@@ -579,54 +601,60 @@ msgid "Participant"
 msgstr "Participante"
 
 #: users/models.py:184
-msgid "Profile Manager"
-msgstr ""
+#, fuzzy
+#| msgid "Manager"
+msgid "Manager Name"
+msgstr "Gerente"
 
 #: users/models.py:187
-msgid "Phone Manager"
-msgstr "Fone do gerente"
-
-#: users/models.py:188
-msgid "Email Manager"
-msgstr "E-mail do gerente"
-
-#: users/models.py:189
 msgid "I am responsible for the information contained in this profile"
 msgstr "Sou responsável pelas informações contidas neste perfil"
 
-#: users/models.py:192
+#: users/models.py:189
+msgid "CNPJ"
+msgstr ""
+
+#: users/models.py:190
+msgid "Address"
+msgstr "Endereço"
+
+#: users/models.py:191
+msgid "Phone"
+msgstr "Fone"
+
+#: users/models.py:193
 #, fuzzy
 #| msgid "Company"
 msgid "Company Logo"
 msgstr "Empresa"
 
-#: users/models.py:193
+#: users/models.py:194
 #, fuzzy
 #| msgid "Company phone number"
 msgid "Company Banner"
 msgstr "Fone da empresa"
 
-#: users/models.py:194
-msgid "Logo description"
-msgstr ""
-
 #: users/models.py:195
-msgid "Banner description"
-msgstr ""
+msgid "Logo description"
+msgstr "Descrição da logo"
 
 #: users/models.py:196
+msgid "Banner description"
+msgstr "Descrição do banner"
+
+#: users/models.py:197
 msgid "Company phone number"
 msgstr "Fone da empresa"
 
-#: users/models.py:198
+#: users/models.py:199
 msgid "Company description"
 msgstr "Descrição da empresa"
 
-#: users/models.py:204
+#: users/models.py:205
 msgid "Company"
 msgstr "Empresa"
 
-#: users/models.py:205
+#: users/models.py:206
 msgid "Companies"
 msgstr "Empresas"
 
@@ -668,17 +696,83 @@ msgstr "Já tenho uma conta"
 msgid "Go Home"
 msgstr "Voltar a Home"
 
-#: users/templates/users/participant_edit.html:280
+#: users/templates/users/participant_edit.html:12
 #, fuzzy
 #| msgid "My profile"
-msgid "Save profile"
+msgid "profile"
 msgstr "Meu perfil"
+
+#: users/templates/users/participant_edit.html:39
+msgid "User Picture"
+msgstr "Foto"
+
+#: users/templates/users/participant_edit.html:42
+msgid "Picture"
+msgstr "Foto"
+
+#: users/templates/users/participant_edit.html:47
+#, fuzzy
+#| msgid "Picture description"
+msgid "Image description"
+msgstr "Descrição da imagem"
+
+#: users/templates/users/participant_edit.html:52
+msgid "Language"
+msgstr "Lingua"
+
+#: users/templates/users/participant_edit.html:61
+msgid "Personal Information"
+msgstr "Informações pessoais"
+
+#: users/templates/users/participant_edit.html:65
+#, fuzzy
+#| msgid "Name"
+msgid "Your Name"
+msgstr "Nome"
+
+#: users/templates/users/participant_edit.html:70
+msgid "Birth date"
+msgstr "Data de nascimento"
+
+#: users/templates/users/participant_edit.html:77
+#, fuzzy
+#| msgid "Social Name"
+msgid "Social name"
+msgstr "Nome social"
+
+#: users/templates/users/participant_edit.html:84
+#, fuzzy
+#| msgid "Title and Pronoun"
+msgid "Title pronoun"
+msgstr "Título e pronome"
+
+#: users/templates/users/participant_edit.html:93
+msgid "Gender"
+msgstr "Gênero"
+
+#: users/templates/users/participant_edit.html:115
+msgid "Sexual Orientation"
+msgstr "Orientação sexual"
+
+#: users/templates/users/participant_edit.html:126
+#, fuzzy
+#| msgid "Other orientation"
+msgid "Other sexual orientation"
+msgstr "Outra orientação"
+
+#: users/templates/users/participant_edit.html:160
+msgid "Contact"
+msgstr "Contato"
+
+#: users/templates/users/participant_edit.html:172
+msgid "Save profile"
+msgstr "Salvar informações"
 
 #: users/templates/users/participant_form.html:19
 msgid "Create an account"
 msgstr "Criar uma conta"
 
-#: users/views.py:248 users/views.py:263
+#: users/views.py:234 users/views.py:248 users/views.py:263
 msgid "Profile was updated successfully"
 msgstr "Perfil atualizado com sucesso"
 
@@ -688,7 +782,7 @@ msgstr "Buscar arquivos"
 
 #: venv/lib/python3.11/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:5
 msgid "Select an image to embed"
-msgstr ""
+msgstr "Escolha uma imagem"
 
 #: venv/lib/python3.11/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:27
 msgid "Browse for the image you want, then click 'Embed Image' to continue..."
@@ -1367,11 +1461,11 @@ msgstr ""
 
 #: venv/lib/python3.11/site-packages/django/forms/widgets.py:795
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: venv/lib/python3.11/site-packages/django/forms/widgets.py:796
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #. Translators: Please do not add spaces around commas.
 #: venv/lib/python3.11/site-packages/django/template/defaultfilters.py:861
@@ -1935,6 +2029,12 @@ msgstr ""
 #: venv/lib/python3.11/site-packages/django/views/templates/default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Phone Manager"
+#~ msgstr "Fone do gerente"
+
+#~ msgid "Email Manager"
+#~ msgstr "E-mail do gerente"
 
 #, fuzzy
 #~| msgid "Create an coordinator account!"

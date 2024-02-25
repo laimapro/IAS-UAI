@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from users.models import Coordinator, Manager
 import uuid
+import random
 
 
 class Project(models.Model):
@@ -21,3 +22,14 @@ class Project(models.Model):
 
     def __str__(self):
         return self.pj_name
+
+    def save(self, *args, **kwargs):
+        # Verifica se o objeto é novo (não tem um ID)
+        if not self.pk:
+            # Gera um número de 6 dígitos para o campo pj_code
+            self.pj_code = self.generate_project_code()
+        super().save(*args, **kwargs)
+
+    def generate_project_code(self):
+        # Gera um número aleatório de 6 dígitos
+        return random.randint(100000, 999999)
