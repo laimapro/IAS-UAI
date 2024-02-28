@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans 'My profile' %}{% endblock %}
+{% block title %}{% trans 'Meu perfil' %}{% endblock %}
 
 {% load static %}
 {% load widget_tweaks %}
@@ -9,7 +9,7 @@
 
 <div class="col-12 p-3 col-md-8 col-lg-10 mx-auto pt-5">
     <div class="w-100 article-title d-flex justify-content-between align-items-center">
-        <h2>Edit <span class="text-bold">profile</span></h2>
+        <h2>{% trans 'Editar' %} <span class="text-bold">{% trans 'perfil' %}</span></h2>
     </div>
     {% if messages %}
     {% for message in messages %}
@@ -29,142 +29,126 @@
         {{ form.media }}
 
         <section class="d-flex row">
-            <!-- PICTURE USER SECTION -->
+            <!-- SEÇÃO DE FOTO DO USUÁRIO -->
             <div class="col-12 pe-md-0 pe-3 col-md-4">
                 <fieldset>
-                    <h3>Picture</h3>
+                    <h3>{% trans 'Foto' %}</h3>
 
                     <div class="form-floating mb-3">
-                        {% render_field form.picture|add_class:'form-control' placeholder=form.picture.label %}
-                        <label for="id_picture">Company Picture</label>
+                        {{ form.picture|add_class:'form-control'|attr:"placeholder:{% trans 'Foto da empresa' %}" }}
+                        <label for="id_picture">{% trans 'Foto da empresa' %}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        {% render_field form.picture_description|add_class:'form-control' placeholder='Enter an image description' aria-label='Enter an image description' %}
-                        <label for="id_picture_description">Image description</label>
+                        {{ form.picture_description|add_class:'form-control'|attr:"placeholder:{% trans 'Insira uma descrição da imagem' %}"|attr:"aria-label:{% trans 'Insira uma descrição da imagem' %}" }}
+                        <label for="id_picture_description">{% trans 'Descrição da imagem' %}</label>
                     </div>
                 </fieldset>
                 <hr class="divider">
                 <fieldset>
-                    <h3>Banner page</h3>
+                    <h3>{% trans 'Banner da página' %}</h3>
                     <div class="form-floating mb-3">
-                        {% render_field form.banner|add_class:'form-control' placeholder=form.banner.label %}
-                        <label for="id_banner">Banner Picture</label>
-
+                        {{ form.banner|add_class:'form-control'|attr:"placeholder:{% trans 'Imagem do banner' %}" }}
+                        <label for="id_banner">{% trans 'Imagem do banner' %}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        {% render_field form.banner_description|add_class:'form-control' placeholder='enter an image description' aria-label='enter an image description' %}
-                        <label for="id_banner_description">Banner Description</label>
+                        {{ form.banner_description|add_class:'form-control'|attr:"placeholder:{% trans 'Insira uma descrição da imagem' %}"|attr:"aria-label:{% trans 'Insira uma descrição da imagem' %}" }}
+                        <label for="id_banner_description">{% trans 'Descrição do banner' %}</label>
                     </div>
 
                     <div class="form-floating mb-3">
-                        {% render_field form.language|add_class:'form-control' %}
-                        <label for="id_language">Language</label>
+                        {{ form.language|add_class:'form-control' }}
+                        <label for="id_language">{% trans 'Idioma' %}</label>
                     </div>
-
                 </fieldset>
             </div>
 
             <div class="col-12 pt-0 p-3 col-md-8">
-                <!-- Admin information -->
+                <!-- Informações do administrador -->
                 <fieldset class="mb-4">
-                    <h3>Profile Admin Information</h3>
-                    <div class="text-muted">Person described below is responsible for edit page profile</div>
+                    <h3>{% trans 'Informações do administrador do perfil' %}</h3>
+                    <div class="text-muted">{% trans 'A pessoa descrita abaixo é responsável pela edição do perfil da página' %}</div>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                {% render_field form.profile_manager|add_class:'form-control' placeholder='Enter the name of the person responsible for editing this profile' aria-label='Enter the full name of the person responsible for editing this profile' %}
-                                <label for="id_profile_manager">Admin name</label>
+                                {{ form.profile_manager|add_class:'form-control'|attr:"placeholder:{% trans 'Digite o nome da pessoa responsável por editar este perfil' %}"|attr:"aria-label:{% trans 'Digite o nome completo da pessoa responsável por editar este perfil' %}" }}
+                                <label for="id_profile_manager">{% trans 'Nome do administrador' %}</label>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-floating mb-3">
-                                {% render_field form.email_manager|add_class:'form-control' placeholder='Enter the email address of the person responsible for editing this profile' aria-label='Enter the email address of the person responsible for editing this profile' %}
-                                <label for="id_email_manager">Admin Email</label>
+                                {{ form.email_manager|add_class:'form-control'|attr:"placeholder:{% trans 'Digite o endereço de e-mail da pessoa responsável por editar este perfil' %}"|attr:"aria-label:{% trans 'Digite o endereço de e-mail da pessoa responsável por editar este perfil' %}" }}
+                                <label for="id_email_manager">{% trans 'E-mail do administrador' %}</label>
                                 {{ form.email_manager.errors }}
                             </div>
                         </div>
-
                         <div class="col-12 col-md">
-
                             <div class="form-floating mb-3">
-                                {% render_field form.social_name|add_class:'form-control' placeholder='Enter the social name you want to be addressed by' aria-label='Enter the social name you want to be addressed by' %}
-                                <label for="id_social_name">Social Name</label>
+                                {{ form.social_name|add_class:'form-control'|attr:"placeholder:{% trans 'Digite o nome social pelo qual deseja ser chamado' %}"|attr:"aria-label:{% trans 'Digite o nome social pelo qual deseja ser chamado' %}" }}
+                                <label for="id_social_name">{% trans 'Nome Social' %}</label>
                             </div>
                         </div>
-
                         <div class="col-12  col-md-6">
                             <div class="form-floating mb-3">
-                                {% render_field form.title_pronoun|add_class:'form-control' placeholder='Enter the Title and/or Pronoun you want to be addressed by. For Example Ms./She/Her' aria-label='Enter the Title and/or Pronoun you want to be addressed by. For Example Ms./She/Her' %}
-                                <label for="id_title_pronoun">Title and Pronoun</label>
+                                {{ form.title_pronoun|add_class:'form-control'|attr:"placeholder:{% trans 'Digite o título e/ou pronome pelo qual deseja ser chamado. Por exemplo, Sra./Ela' %}"|attr:"aria-label:{% trans 'Digite o título e/ou pronome pelo qual deseja ser chamado. Por exemplo, Sra./Ela' %}" }}
+                                <label for="id_title_pronoun">{% trans 'Título e Pronome' %}</label>
                             </div>
                         </div>
                         <div class="col-12 col-md">
                             <div class="form-floating mb-3">
-                                {% render_field form.phone_manager|add_class:'form-control' placeholder='Enter the phone number of the person responsible for editing this profile' aria-label='Enter the phone number of the person responsible for editing this profile' %}
-                                <label for="id_phone_manager">Admin Phone Number</label>
+                                {{ form.phone_manager|add_class:'form-control'|attr:"placeholder:{% trans 'Digite o número de telefone da pessoa responsável por editar este perfil' %}"|attr:"aria-label:{% trans 'Digite o número de telefone da pessoa responsável por editar este perfil' %}" }}
+                                <label for="id_phone_manager">{% trans 'Número de telefone do administrador' %}</label>
                             </div>
                         </div>
-
                         <div class="col-12">
                             <div class="form-checkbox mb-3">
-                                {% render_field form.is_resp|add_class:'form-check-input' placeholder=form.is_resp.label %}
+                                {{ form.is_resp|add_class:'form-check-input' }}
                                 <label class="form-check-label" for="id_is_resp">
-                                    I am responsible for the information contained in this profile
+                                    {% trans 'Sou responsável pelas informações contidas neste perfil' %}
                                 </label>
                                 {{ form.is_resp.errors }}
                             </div>
                         </div>
                     </div>
-
-
                 </fieldset>
-
-                <!-- About -->
+                <!-- Sobre -->
                 <fieldset class="mb-4">
-                    <h3>About</h3>
-
+                    <h3>{% trans 'Sobre' %}</h3>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-floating mb-3">
-                                {% render_field form.name|add_class:'form-control' placeholder='Company name' %}
-                                <label for="id_name">Company name</label>
+                                {{ form.name|add_class:'form-control'|attr:"placeholder:{% trans 'Nome da empresa' %}" }}
+                                <label for="id_name">{% trans 'Nome da empresa' %}</label>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="">Company description:</label>
+                            <label for="">{% trans 'Descrição da empresa:' %}</label>
                             <div class="form-floating mb-3">
-                                {% render_field form.company_description|add_class:'form-control' placeholder='Enter a brief description about your company' aria-label='Enter a brief description about your company' %}
+                                {{ form.company_description|add_class:'form-control'|attr:"placeholder:{% trans 'Digite uma breve descrição sobre sua empresa' %}"|attr:"aria-label:{% trans 'Digite uma breve descrição sobre sua empresa' %}" }}
                                 {{ form.company_description.errors }}
                             </div>
                         </div>
-
                         <div class="col-12 col-md">
                             <div class="form-floating mb-3">
-                                {% render_field form.email|add_class:'form-control' placeholder='Company email' %}
-                                <label for="id_email">Company email</label>
+                                {{ form.email|add_class:'form-control'|attr:"placeholder:{% trans 'E-mail da empresa' %}" }}
+                                <label for="id_email">{% trans 'E-mail da empresa' %}</label>
                                 {{ form.email.errors }}
                             </div>
                         </div>
                         <div class="col-12 col-md">
                             <div class="form-floating mb-3">
-                                {% render_field form.phone|add_class:'form-control' placeholder='Company phone number' %}
-                                <label for="id_phone">Company phone number</label>
+                                {{ form.phone|add_class:'form-control'|attr:"placeholder:{% trans 'Número de telefone da empresa' %}" }}
+                                <label for="id_phone">{% trans 'Número de telefone da empresa' %}</label>
                             </div>
                         </div>
                     </div>
-
                 </fieldset>
-
             </div>
         </section>
-
         <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
-            <button type="submit" class="btn btn-primary mx-2"><i class="fas fa-save me-3"></i>Save profile</button>
+            <button type="submit" class="btn btn-primary mx-2"><i class="fas fa-save me-3"></i>{% trans 'Salvar perfil' %}</button>
         </div>
     </form>
-
 </div>
-
 {% endblock %}
