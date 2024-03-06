@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import InvitationForm, ParticipantInvitationForm
 from mixins.custom_mixins import AdminOrCoordinatorRequiredMixin
 from .models import Project
-from instance.models import QuestionInstance, InstanceAttempt
+from instance.models import InstanceAttempt
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView, View
 
 

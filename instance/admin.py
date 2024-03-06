@@ -1,15 +1,11 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-from .models import Instance, QuestionInstance, InstanceAttempt, InstanceAttemptAnswer
+from .models import Instance, InstanceAttempt, InstanceAttemptAnswer
 
 
 class InstanceAdmin(admin.ModelAdmin):
     list_display = ('title', 'instance_project')
     list_filter = ('instance_project', )
-
-
-class QuestionInstanceAdmin(admin.ModelAdmin):
-    list_display = ('question_pj', 'instance_pj', )
 
 
 class InstanceAttemptAdmin(admin.ModelAdmin):
@@ -26,6 +22,5 @@ class InstanceAttemptAnswerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Instance, InstanceAdmin)
-admin.site.register(QuestionInstance, QuestionInstanceAdmin)
 admin.site.register(InstanceAttempt, InstanceAttemptAdmin)
 admin.site.register(InstanceAttemptAnswer, InstanceAttemptAnswerAdmin)

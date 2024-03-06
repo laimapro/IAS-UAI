@@ -4,8 +4,8 @@ from .models import Question, Option, Category
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category')
-    list_filter = ('category', )
+    list_display = ('title', 'q_instance', 'category')
+    list_filter = ('category', 'q_instance',)
 
 
 class OptionAdmin(admin.ModelAdmin):

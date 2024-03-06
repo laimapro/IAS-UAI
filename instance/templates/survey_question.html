@@ -2,13 +2,20 @@
 {% load i18n %}
 
 {% block content %}
-    <div class="container-fluid p-5">
+    <div class="container-fluid p-5" id="container-body">
 
         {% if messages %}
             {% if is_correct %}
                 <div class="alert alert-success d-flex alert-dismissible fade show" role="alert">
                     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                         <use xlink:href="#check-circle-fill"/></svg>
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             {% else %}
                 <div class="alert alert-primary d-flex alert-dismissible fade show" role="alert">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -17,21 +24,21 @@
                         1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552
                         0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                     </svg>
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
             {% endif %}
-
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
         {% endif %}
 
-        <h1>{{ question_instance.instance_pj }} - Questão {{ next_question_index }} de {{ total_questions }}</h1>
+        <h1>{{ question.q_instance }}</h1><h5>(Questão {{ next_question_index }} de {{ total_questions }})</h5>
+        <h2 class="my-4">{{ question.title }}</h2>
         <form method="post">
             {% csrf_token %}
-            <input type="hidden" name="question_id" value="{{ question_instance.question_pj.id }}">
+            <input type="hidden" name="question_id" value="{{ question.id }}">
             <h2 class="my-4">{{ question_instance.question_pj.title }}</h2>
             {% for option in question_options %}
                 <label>
@@ -70,5 +77,37 @@
             <br><br>
         </form>
     </div>
+
+{% endblock %}
+{% block scripts %}
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            // Previne o envio do formulário
+            event.preventDefault();
+
+            // Define uma variável para rastrear se todas as questões têm uma opção selecionada
+            var allQuestionsAnswered = true;
+
+            // Seleciona todos os elementos de input de tipo radio com name="option_id"
+            $('input[type=radio][name=option_id]').each(function() {
+                // Verifica se pelo menos uma opção de cada questão foi selecionada
+                if (!$('input[type=radio][name=' + this.name + ']:checked').length) {
+                    // Se nenhuma opção foi selecionada, define allQuestionsAnswered como false
+                    allQuestionsAnswered = false;
+                    // Exibe uma mensagem de erro ou faça o que for necessário aqui
+                    console.log('Por favor, selecione uma alternativa para cada questão.');
+                    alert('Por favor, selecione uma alternativa para prosseguir.');
+
+                    return false; // Sai do loop each
+                }
+            });
+
+            // Se todas as questões têm uma opção selecionada, envia o formulário
+            if (allQuestionsAnswered) {
+                // Submete o formulário
+                this.submit();
+            }
+        });
+    });
 
 {% endblock %}

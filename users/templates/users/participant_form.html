@@ -27,27 +27,34 @@
                     {% endfor %}
                     <div class="form-floating mb-3">
                         {% render_field form.name|add_class:'form-control' placeholder=form.name.label %}
-                        <label>Name of candidate</label>
+                        <label>{% trans 'Name of participant' %}</label>
                     </div>
                     <div class="form-floating mb-3">
                         {% render_field form.email|add_class:'form-control' placeholder=form.email.label %}
-                        <label>Email</label>
+                        <label>{% trans 'Email' %}</label>
                         {{ form.email.errors }}
                     </div>
                     <div class="form-floating mb-3">
                         {% render_field form.password1|add_class:'form-control'|attr:"type:password" placeholder=form.password1.label %}
-                        <label>Password</label>
+                        <label>{% trans 'Password' %}</label>
                         {{ form.password1.errors }}
                     </div>
                     <div class="form-floating mb-3">
                         {% render_field form.password2|add_class:'form-control'|attr:"type:password" placeholder=form.password2.label %}
-                        <label>Confirm Password</label>
+                        <label>{% trans 'Confirm Password' %}</label>
                         {{ form.password2.errors }}
                     </div>
                     <div class="form-check mb-3">
                         {% render_field form.i_agree placeholder=form.i_agree.label %}
                         <span class="form-check-label" for="">
-                            I agree to the <a accesskey="v" href="{% url 'terms_service' %}" title="Opens in new window" target="_blank">terms of service</a>, <a accesskey="p" href="{% url 'privacy' %}" title="Opens in new window" target="_blank">privacy</a> and <a accesskey="o" href="{% url 'commenting_policy' %}" title="Opens in new window" target="_blank">commenting policy</a> of this website.
+                            {% trans 'I agree to the' %}
+                            <a accesskey="v" href="{% url 'terms_service' %}"
+                               title="Opens in new window" target="_blank">{% trans 'terms of service' %}</a>,
+                            <a accesskey="p" href="{% url 'privacy' %}" title="Opens in new window"
+                               target="_blank">{% trans 'privacy' %}</a> {% trans 'and' %}
+                            <a accesskey="o" href="{% url 'commenting_policy' %}"
+                               title="Opens in new window" target="_blank">{% trans 'commenting policy' %}</a>
+                            {% trans 'of this website' %}.
                         </span>
                         {{ form.i_agree.errors }}
                     </div>

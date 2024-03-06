@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from project.models import Project
 from question.models import Question, Option, Category
-from .models import Instance, InstanceAttempt, QuestionInstance, InstanceAttemptAnswer
+from .models import Instance, InstanceAttempt, InstanceAttemptAnswer
 from .forms import CreateInstanceForm
 import random
 from docx import Document
@@ -25,6 +25,7 @@ class ImportInstancesView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
 
         project_obj = Project.objects.filter(id=kwargs['project_id']).first()
+        add_counter = 0
 
         if 'word_file' in request.FILES:
             word_file = request.FILES['word_file']
@@ -43,6 +44,7 @@ class ImportInstancesView(LoginRequiredMixin, View):
                                                                instance_project=project_obj).first()
                     if not current_instance:
                         current_instance = Instance.objects.create(title=instance_title, instance_project=project_obj)
+                        add_counter = add_counter + 1
                     # print('Instance: ', current_instance)
                 elif paragraph.text.startswith('Situação Geradora:'):
                     instance_situation = paragraph.text.replace('Situação Geradora:', '').strip()
@@ -58,30 +60,19 @@ class ImportInstancesView(LoginRequiredMixin, View):
                     else:
                         current_category = Category.objects.create(title=category_text)
                 elif paragraph.text.startswith('Pergunta Geradora:'):
-                    # Nova pergunta encontrada
-                    question_text = paragraph.text.replace('Pergunta Geradora:', '').strip()
-                    questions = Question.objects.filter(title=question_text)
-                    # print('Question Text: ', question_text)
-                    # print('Questions: ', questions)
                     # print('Current Category: ', current_category)
                     if not current_category:
                         current_category = Category.objects.get(title='Geral')
-                        # print('Categoria: ', current_category.title)
-                    if questions.exists():
-                        # print('Questão existe: ', questions.first())
-                        current_question = questions.first()
-                    else:
-                        current_question = Question.objects.create(category=current_category, title=question_text)
+                    # Nova pergunta encontrada
+                    question_text = paragraph.text.replace('Pergunta Geradora:', '').strip()
+                    current_question = Question.objects.filter(title=question_text, q_instance=current_instance,
+                                                               category=current_category).first()
+                    # print('Question Text: ', question_text)
+                    # print('Current Questions: ', current_question)
+                    # print('Categoria: ', current_category.title)
+                    if not current_question:
+                        current_question = Question.objects.create(q_instance=current_instance, category=current_category, title=question_text)
                         # print('Questão não existe: ', current_question)
-                    # Cria uma instância da pergunta se houver uma instância identificada
-                    if current_instance:
-                        question_instance = QuestionInstance.objects.filter(question_pj=current_question,
-                                                                            instance_pj=current_instance)
-                        print('Question instance filter: ', question_instance)
-                        if not question_instance.exists():
-                            print('Question Instance Não Existe!')
-                            QuestionInstance.objects.create(question_pj=current_question,
-                                                            instance_pj=current_instance)
                 elif paragraph.text.startswith('Resposta:'):
                     correct = False
                     option_text = paragraph.text.replace('Resposta:', '').strip()
@@ -104,7 +95,10 @@ class ImportInstancesView(LoginRequiredMixin, View):
                     if new_option is not None:
                         new_option.feedback = feedback
                         new_option.save()
-        print('PROJECT OBJ: ', project_obj.id)
+        # print('PROJECT OBJ: ', project_obj.id)
+
+        # messages.success(self.request, _(f'Import completed and %d instances were created', add_counter))
+        messages.success(self.request, _('Import completed and {} instances were created').format(add_counter))
 
         return redirect('instance_import', project_id=project_obj.id)
 
@@ -146,11 +140,20 @@ class SurveyStartView(TemplateView):
         instance_id = kwargs['instance_id']
         instance = Instance.objects.get(id=instance_id)
         context['instance'] = instance
-        attempt_exists = InstanceAttempt.objects.filter(user_id=self.request.user.participant,
-                                                        instance_id=instance).first()
-        if attempt_exists:
-            context['attempt'] = attempt_exists
+        print('User type: ', self.request.user.type)
+
+        if self.request.user.type == 'PARTICIPANT':
+            attempt_exists = InstanceAttempt.objects.filter(user_id=self.request.user.participant,
+                                                            instance_id=instance).first()
+            if attempt_exists:
+                context['attempt'] = attempt_exists
+        else:
+            context['error'] = True
+            context['pj_id'] = instance.instance_project.id
+            messages.error(self.request, 'Você precisa ser um participante para responder a instância')
         return context
+
+
 
     def post(self, request, *args, **kwargs):
         # Crie uma nova instância de tentativa de pesquisa ao iniciar
@@ -167,16 +170,16 @@ class SurveyQuestionView(TemplateView):
         context = super().get_context_data(**kwargs)
         attempt_id = kwargs['attempt_id']
         instance_attempt = InstanceAttempt.objects.get(id=attempt_id)
-        question_instances = QuestionInstance.objects.filter(instance_pj=instance_attempt.instance_id)
+        questions = Question.objects.filter(q_instance=instance_attempt.instance_id)
         current_question_index = kwargs['q']
 
         # print(question_instances)
         # print(kwargs)
 
-        if current_question_index < question_instances.count():
+        if current_question_index < questions.count():
             is_correct = False
             likert_scale = 1
-            question_id = question_instances[current_question_index].question_pj.id
+            question_id = questions[current_question_index].id
             iaas = InstanceAttemptAnswer.objects.filter(question_id=question_id, instance_attempt_id=instance_attempt)
             options = []
             for i in iaas:
@@ -186,18 +189,18 @@ class SurveyQuestionView(TemplateView):
                     is_correct = True
                     likert_scale = i.likert_scale
 
-            question_options = list(question_instances[current_question_index].question_pj.options.all())
+            question_options = list(questions[current_question_index].options.all())
             random.shuffle(question_options)
 
             context['respondidas'] = options
             context['attempt_id'] = attempt_id
             context['is_correct'] = is_correct
             context['likert_scale'] = likert_scale
-            context['question_instance'] = question_instances[current_question_index]
+            context['question'] = questions[current_question_index]
             context['question_options'] = question_options
             context['current_question_index'] = current_question_index
             context['next_question_index'] = current_question_index + 1
-            context['total_questions'] = question_instances.count()
+            context['total_questions'] = questions.count()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -210,7 +213,7 @@ class SurveyQuestionView(TemplateView):
         question = Question.objects.get(id=question_id)
 
         current_question_index = int(request.POST.get('current_question_index', 0))
-        question_instances = QuestionInstance.objects.filter(instance_pj=instance_attempt.instance_id)
+        question_instances = Question.objects.filter(q_instance=instance_attempt.instance_id)
         next_question_index = current_question_index + 1
 
         instance_attempt_answer_obj = InstanceAttemptAnswer.objects.filter(question_id=question_id,

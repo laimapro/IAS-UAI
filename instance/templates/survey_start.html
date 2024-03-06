@@ -4,17 +4,28 @@
 {% block content %}
 
     <div class="container-fluid p-5">
-        <h1>{{ instance.title }}</h1>
-        <h2 class="my-4">{{ instance.description }}</h2>
-        <h2>{% trans 'Project' %}: {{ instance.instance_project }}</h2>
-        <h2>{% trans 'Created' %}: {{ instance.created_at }}</h2>
-        {% if attempt %}
-            <a href="{% url 'survey_question' attempt.id 0%}" class="btn btn-primary">Continuar pesquisa</a>
-        {% else %}
-            <form method="post" class="my-4">
-                {% csrf_token %}
-                <button class="btn btn-primary" type="submit">{% trans 'Iniciar pesquisa' %}</button>
-            </form>
+
+        {% if messages %}
+            {% for message in messages %}
+                <h2>
+                    {{ message }}!
+                </h2>
+            {% endfor %}
+            <a href="{% url 'pj_detail' pj_id %}" class="btn btn-primary my-4">Voltar</a>
+        {% endif %}
+        {% if not error %}
+            <h1>{{ instance.title }}</h1>
+            <h2 class="my-4">{{ instance.description }}</h2>
+            <h4>{% trans 'Project' %}: {{ instance.instance_project }}</h4>
+            <h4>{% trans 'Created' %}: {{ instance.created_at }}</h4>
+            {% if attempt %}
+                <a href="{% url 'survey_question' attempt.id 0%}" class="btn btn-primary">{% trans 'Continue survey' %}</a>
+            {% else %}
+                <form method="post" class="my-4">
+                    {% csrf_token %}
+                    <button class="btn btn-primary" type="submit">{% trans 'Start survey' %}</button>
+                </form>
+            {% endif %}
         {% endif %}
     </div>
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 19:56+0000\n"
+"POT-Creation-Date: 2024-02-28 04:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,95 +18,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ias/settings.py:147 users/models.py:43
-msgid "English"
-msgstr "Inglês"
-
-#: ias/settings.py:148 users/models.py:44
+#: ias/settings.py:147 users/models.py:44
 msgid "Portuguese (Brazil)"
 msgstr "Português (Brasil)"
 
-#: instance/admin.py:25 instance/models.py:20 instance/models.py:42
-#: instance/templates/instance/instance_form.html:23
+#: ias/settings.py:148 users/models.py:43
+msgid "English"
+msgstr "Inglês"
+
+#: instance/admin.py:21 instance/models.py:19 instance/models.py:29
+#: instance/templates/instance/instance_form.html:23 question/models.py:23
 msgid "Instance"
 msgstr "Instância"
 
-#: instance/models.py:13 instance/templates/survey_start.html:9
+#: instance/models.py:12 instance/templates/survey_start.html:19
 #: project/models.py:19 project/templates/project/project_form.html:13
 msgid "Project"
 msgstr "Projeto"
 
-#: instance/models.py:14 question/models.py:9 question/models.py:21
+#: instance/models.py:13 question/models.py:10 question/models.py:22
 msgid "Title"
 msgstr "Título"
 
-#: instance/models.py:15
+#: instance/models.py:14
 msgid "Generating situation"
 msgstr "Situação geradora"
 
-#: instance/models.py:21 instance/templates/instance/instance_detail.html:63
+#: instance/models.py:20 instance/templates/instance/instance_detail.html:63
 #: instance/templates/instance_batch.html:19
-#: project/templates/project/project_detail.html:56
+#: project/templates/project/project_detail.html:60
 msgid "Instances"
 msgstr "Instâncias"
 
-#: instance/models.py:32
-#, fuzzy
-#| msgid "Questions"
-msgid "Question Instance"
-msgstr "Questões"
-
-#: instance/models.py:33
-#, fuzzy
-#| msgid "Instances"
-msgid "Question Instances"
-msgstr "Instâncias"
-
-#: instance/models.py:41
+#: instance/models.py:28
 msgid "User"
 msgstr ""
 
-#: instance/models.py:43
+#: instance/models.py:30
 msgid "Status Attempt"
 msgstr ""
 
-#: instance/models.py:44 instance/models.py:64
+#: instance/models.py:31 instance/models.py:52
 #: instance/templates/instance/instance_detail.html:45
-#: instance/templates/survey_start.html:10
-#: project/templates/project/project_detail.html:38
+#: instance/templates/survey_start.html:20
+#: project/templates/project/project_detail.html:42
 #: question/templates/question/question_detail.html:35
 msgid "Created"
 msgstr "Criado"
 
-#: instance/models.py:48 instance/models.py:61
+#: instance/models.py:35 instance/models.py:49
 msgid "Instance Attempt"
 msgstr "Tentativa"
 
-#: instance/models.py:49
+#: instance/models.py:36
 msgid "Instance Attempts"
 msgstr "Tentativas"
 
-#: instance/models.py:59 question/models.py:25
+#: instance/models.py:47 question/models.py:29
 msgid "Question"
 msgstr "Questão"
 
-#: instance/models.py:60 question/models.py:39
+#: instance/models.py:48 question/models.py:43
 msgid "Option"
 msgstr "Opção"
 
-#: instance/models.py:62
+#: instance/models.py:50
 msgid "Likert scale"
 msgstr "Nota"
 
-#: instance/models.py:63
+#: instance/models.py:51
 msgid "Attempt number"
 msgstr "Número da tentativa"
 
-#: instance/models.py:68
+#: instance/models.py:56
 msgid "Instance Attempt Answer"
 msgstr "Resposta"
 
-#: instance/models.py:69
+#: instance/models.py:57
 msgid "Instance Attempt Answers"
 msgstr "Respostas"
 
@@ -119,42 +107,42 @@ msgstr "Coordenador"
 #: instance/templates/instance/instance_detail.html:29
 #: instance/templates/instance/instance_detail.html:39
 #: project/templates/project/project_detail.html:19
-#: project/templates/project/project_detail.html:32
+#: project/templates/project/project_detail.html:33
 msgid "Waiting for activation"
 msgstr "Aguardando ativação"
 
 #: instance/templates/instance/instance_detail.html:32
 #: instance/templates/instance/instance_detail.html:42
-#: project/templates/project/project_detail.html:24
-#: project/templates/project/project_detail.html:35
+#: project/templates/project/project_detail.html:25
+#: project/templates/project/project_detail.html:38
 #: question/templates/question/question_detail.html:22
 #: question/templates/question/question_detail.html:32
 msgid "Send invitation"
 msgstr "Enviar convite"
 
 #: instance/templates/instance/instance_detail.html:35 project/models.py:16
-#: project/templates/project/project_detail.html:28
+#: project/templates/project/project_detail.html:29
 #: question/templates/question/question_detail.html:25
 msgid "Manager"
 msgstr "Gerente"
 
 #: instance/templates/instance/instance_detail.html:50
-#: project/templates/project/project_detail.html:43 users/models.py:173
+#: project/templates/project/project_detail.html:47 users/models.py:173
 msgid "Participants"
 msgstr "Participantes"
 
 #: instance/templates/instance/instance_detail.html:58
-#: project/templates/project/project_detail.html:51
+#: project/templates/project/project_detail.html:55
 msgid "Invite participant"
 msgstr "Convidar participante"
 
 #: instance/templates/instance/instance_detail.html:73
-#: project/templates/project/project_detail.html:76
+#: project/templates/project/project_detail.html:82
 msgid "Add new instance"
 msgstr "Add nova instância"
 
 #: instance/templates/instance/instance_detail.html:74
-#: project/templates/project/project_detail.html:77
+#: project/templates/project/project_detail.html:83
 #, fuzzy
 #| msgid "Word file"
 msgid "Import Word file"
@@ -183,12 +171,7 @@ msgstr "Instância"
 msgid "Instance description"
 msgstr "Descrição da imagem"
 
-#: instance/templates/instance/instance_form.html:41
-#: instance/templates/instance_batch.html:30
-msgid "Word file (docx) with questions"
-msgstr "Arquivo Word (docx) com as perguntas"
-
-#: instance/templates/instance/instance_form.html:47
+#: instance/templates/instance/instance_form.html:43
 #: instance/templates/instance_batch.html:36
 #: project/templates/project/project_form.html:34
 #: question/templates/question/question_form.html:25
@@ -207,6 +190,10 @@ msgstr "Listar"
 msgid "Projects"
 msgstr "Projetos"
 
+#: instance/templates/instance_batch.html:30
+msgid "Word file (docx) with questions"
+msgstr "Arquivo Word (docx) com as perguntas"
+
 #: instance/templates/survey_finished.html:7
 msgid "Thank you for participating in the survey"
 msgstr "Obrigado por participar da pesquisa"
@@ -215,34 +202,42 @@ msgstr "Obrigado por participar da pesquisa"
 msgid "My Projects"
 msgstr "Meus Projetos"
 
-#: instance/templates/survey_question.html:53
+#: instance/templates/survey_question.html:60
 msgid "Submit survey"
 msgstr "Enviar pesquisa"
 
-#: instance/templates/survey_question.html:55
+#: instance/templates/survey_question.html:62
 msgid "Next question"
 msgstr "Próxima questão"
 
-#: instance/templates/survey_question.html:63
-#: instance/templates/survey_question.html:66
+#: instance/templates/survey_question.html:70
+#: instance/templates/survey_question.html:73
 msgid "To respond"
 msgstr "Responder"
 
-#: instance/templates/survey_start.html:16
-msgid "Iniciar pesquisa"
+#: instance/templates/survey_start.html:22
+msgid "Continue survey"
+msgstr "Continuar pesquisa"
+
+#: instance/templates/survey_start.html:26
+msgid "Start survey"
 msgstr "Iniciar pesquisa"
 
-#: instance/views.py:117
+#: instance/views.py:101
+msgid "Import completed and {} instances were created"
+msgstr "Importação concluída e {} instâncias foram criadas"
+
+#: instance/views.py:123
 #, fuzzy
 #| msgid "Profile was updated successfully"
 msgid "Instance created successfully"
 msgstr "Perfil atualizado com sucesso"
 
-#: instance/views.py:121
+#: instance/views.py:127
 msgid "Word file not found. Operation cancelled"
 msgstr "Arquivo word não encontrado. Operação cancelada"
 
-#: instance/views.py:216
+#: instance/views.py:231
 msgid "Thank you for rating our question correct"
 msgstr "Obrigado por avaliar nossa pergunta correta"
 
@@ -269,6 +264,7 @@ msgstr "Digite o e-mail do participante"
 #: project/templates/project/project_invitation.html:27 users/models.py:51
 #: users/models.py:192 users/templates/users/coordinator_form.html:38
 #: users/templates/users/participant_edit.html:164
+#: users/templates/users/participant_form.html:34
 msgid "Email"
 msgstr "E-mail"
 
@@ -279,36 +275,41 @@ msgstr "E-mail"
 msgid "Send invite"
 msgstr "Enviar convite"
 
-#: project/templates/project/project_detail.html:66
+#: project/templates/project/project_detail.html:22
+#: project/templates/project/project_detail.html:36
+msgid "Uninformed"
+msgstr "Não informado"
+
+#: project/templates/project/project_detail.html:70
 msgid "Answer survey"
 msgstr "Responder pesquisa"
 
-#: question/models.py:12
+#: question/models.py:13
 msgid "Category"
 msgstr "Categoria"
 
-#: question/models.py:13
+#: question/models.py:14
 msgid "Categories"
 msgstr "Categorias"
 
-#: question/models.py:26
+#: question/models.py:30
 msgid "Questions"
 msgstr "Questões"
 
-#: question/models.py:34
+#: question/models.py:38
 #: venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py:2373
 msgid "Text"
 msgstr "Texto"
 
-#: question/models.py:35
+#: question/models.py:39
 msgid "Feedback"
 msgstr "Feedback"
 
-#: question/models.py:36
+#: question/models.py:40
 msgid "Correct"
 msgstr "Correto"
 
-#: question/models.py:40
+#: question/models.py:44
 msgid "Options"
 msgstr "Opções"
 
@@ -365,7 +366,7 @@ msgstr "Sair"
 
 #: templates/base.html:99 templates/side-nav.html:67
 #: users/templates/users/coordinator_form.html:67
-#: users/templates/users/participant_form.html:59
+#: users/templates/users/participant_form.html:66
 msgid "Sign in"
 msgstr "Entrar"
 
@@ -669,24 +670,24 @@ msgid "Coordinator Name"
 msgstr "Coordenador"
 
 #: users/templates/users/coordinator_form.html:43
+#: users/templates/users/participant_form.html:39
 #, fuzzy
 #| msgid "Change password"
 msgid "Password"
 msgstr "Mudar senha"
 
 #: users/templates/users/coordinator_form.html:48
-#, fuzzy
-#| msgid "Change my password"
+#: users/templates/users/participant_form.html:44
 msgid "Confirm Password"
-msgstr "Mudar minha senha"
+msgstr "Confirmar senha"
 
 #: users/templates/users/coordinator_form.html:64
-#: users/templates/users/participant_form.html:56
+#: users/templates/users/participant_form.html:63
 msgid "CREATE MY ACCOUNT"
 msgstr "Criar Conta"
 
 #: users/templates/users/coordinator_form.html:67
-#: users/templates/users/participant_form.html:59
+#: users/templates/users/participant_form.html:66
 msgid "I have an account"
 msgstr "Já tenho uma conta"
 
@@ -771,6 +772,36 @@ msgstr "Salvar informações"
 #: users/templates/users/participant_form.html:19
 msgid "Create an account"
 msgstr "Criar uma conta"
+
+#: users/templates/users/participant_form.html:30
+msgid "Name of participant"
+msgstr "Nome do participante"
+
+#: users/templates/users/participant_form.html:50
+msgid "I agree to the"
+msgstr "Estou de acordo com"
+
+#: users/templates/users/participant_form.html:52
+msgid "terms of service"
+msgstr "termos de serviço"
+
+#: users/templates/users/participant_form.html:54
+msgid "privacy"
+msgstr "Privacidade"
+
+#: users/templates/users/participant_form.html:54
+#: venv/lib/python3.11/site-packages/django/db/models/base.py:1423
+#: venv/lib/python3.11/site-packages/django/forms/models.py:893
+msgid "and"
+msgstr "e"
+
+#: users/templates/users/participant_form.html:56
+msgid "commenting policy"
+msgstr "política de comentários"
+
+#: users/templates/users/participant_form.html:57
+msgid "of this website"
+msgstr "deste site"
 
 #: users/views.py:234 users/views.py:248 users/views.py:263
 msgid "Profile was updated successfully"
@@ -990,11 +1021,6 @@ msgstr ""
 
 #: venv/lib/python3.11/site-packages/django/core/validators.py:605
 msgid "Null characters are not allowed."
-msgstr ""
-
-#: venv/lib/python3.11/site-packages/django/db/models/base.py:1423
-#: venv/lib/python3.11/site-packages/django/forms/models.py:893
-msgid "and"
 msgstr ""
 
 #: venv/lib/python3.11/site-packages/django/db/models/base.py:1425
@@ -2029,6 +2055,19 @@ msgstr ""
 #: venv/lib/python3.11/site-packages/django/views/templates/default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Iniciar pesquisa"
+#~ msgstr "Iniciar pesquisa"
+
+#, fuzzy
+#~| msgid "Questions"
+#~ msgid "Question Instance"
+#~ msgstr "Questões"
+
+#, fuzzy
+#~| msgid "Instances"
+#~ msgid "Question Instances"
+#~ msgstr "Instâncias"
 
 #~ msgid "Phone Manager"
 #~ msgstr "Fone do gerente"
