@@ -10,7 +10,7 @@
         <div class="p-3">
             <h1 class="m-0">
                 <a accesskey="h" title="Ir para a Página Inicial"  href="{% url 'home' %}">
-                    <img class="d-block mx-auto" width="275px" src="{% static 'logo-completa.svg' %}" alt="Em um post-it azul com sua borda superior direita dobrada, o acrônimo Umain é soletrado com um u roxo e m,a,i,n amarelos, todos em minúsculas">
+                    <img class="d-block mx-auto" width="275px" src="{% static 'logo-completa.svg' %}" alt="Logotipo do Laima-UFPE">
                 </a>
             </h1>
 
@@ -23,7 +23,7 @@
             {% endif %}
 
             <fieldset class="p-3 mt-3 card shadow-lg border-0 rounded-lg">
-                <legend role="heading" aria-level="2" class="text-center font-weight-light mb-3 mt-3">Faça login na sua conta!</legend>
+                <legend role="heading" aria-level="2" class="text-center font-weight-light mb-3 mt-3">Entre com seu email e senha!</legend>
                 <form method="post">
                     {% csrf_token %}
                     {% if form.errors %}

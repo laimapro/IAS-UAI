@@ -61,9 +61,10 @@
             <a accesskey="d" class="nav-link" href="{% url 'dashboard' %}"> <i alt="{% trans 'A compass' %}" class="sb-nav-link-icon fas fa-tachometer-alt"></i><span>{% trans 'Dashboard' %}</span></a>
             {% endif %}
 <!--            <a accesskey="c" class="nav-link" href="{% url 'company_list' %}"> <i alt="{% trans 'Drawing of a building' %}" class="sb-nav-link-icon fas fa-building"></i><span>{% trans 'All Companies' %}</span></a>-->
+            {% if not user.is_authenticated %}
             <a accesskey="a" class="nav-link" href="{% url 'about_us' %}"> <i alt="{% trans 'Info sign' %}" class="sb-nav-link-icon fas fa-info-circle"></i><span>{% trans 'About us' %}</span></a>
             <a accesskey="u" class="nav-link" href="{% url 'contact_us' %}"> <i alt="{% trans 'Two black speech bubbles' %}" class="sb-nav-link-icon  fas fa-comments"></i><span>{% trans 'Contact us' %}</span></a>
-            {% if not user.is_authenticated %}
+            
             <a accesskey="i" class="nav-link" href="{% url 'login' %}"> <i alt="{% trans 'Right Arrow drawing' %}" class="sb-nav-link-icon fas fa-sign-in-alt"></i><span>{% trans 'Sign in' %}</span></a>
             {% else %}
             <a class="nav-link" href="{% url 'logout' %}"> <i alt="{% trans 'Left Arrow drawing' %}" class="sb-nav-link-icon fas fa-sign-out-alt"></i><span>{% trans 'Sign out' %}</span></a>

@@ -3,13 +3,19 @@
 {% load i18n %}
 
 {% block content %}
-
+	<center><h3>Laima - Laboratory of Artificial Intelligence and Machine Aid</h3></center>
+	<p>Está é a página de pesquisas do Laima-UFPE. Se você tem algum projeto conosco, é colaborador de algum dos nossos projetos ou vai responder uma pesquisa, clique no botão entrar<br>
+	Obrigado por sua parceria , Obrigado por sua participação.</p>
+		<br>
+		{% if user.is_authenticated %}
+		<a href=""></a>
+		{% else %}
+		<a class="dropdown-item" href="{% url 'login' %}">{% trans 'Sign in' %}</a>
+		{% endif %}
 	<section id="section-search" class="search-container">
 		<div class="search-container-form">
 			<div class="col-12 col-md-11 col-lg-8 text-center mx-auto">
-				<h1 class="h1 text-white mb-4 txt-shadow">{% trans 'Social Enhancement' %}:
-					<span class="text-bold">{% trans 'Bringing People Together to Transform Communities by Promoting Inclusion and Equity' %}</span>.
-				</h1>
+				
 			</div>
 		</div>
 	</section>
