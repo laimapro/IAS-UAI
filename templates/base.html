@@ -21,15 +21,15 @@
     <nav class="sb-topnav shadow navbar navbar-expand navbar-dark bg-dark">
         <div class="skippy visually-hidden-focusable overflow-hidden">
             <a class="d-inline-flex p-2 m-1 text-white" id="top">Laima</a>
-            <a class="d-inline-flex p-2 m-1 text-white" title="Skip to main content" href="#main-content">Ir para o conteúdo</a>
-            <a class="d-inline-flex p-2 m-1 text-white" title="Skip to Menu" href="#main-menu">Ir para o Menu</a>
+            <a class="d-inline-flex p-2 m-1 text-white" title="Ir para o conteúdo principal" href="#main-content">Ir para o conteúdo</a>
+            <a class="d-inline-flex p-2 m-1 text-white" title="Ir para o Menu" href="#main-menu">Ir para o Menu</a>
         </div> <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" role="heading" aria-level="1" href="/">
             <img src="{% static 'logo-completa.svg' %}" height="40" alt="Logotipo do Laboratory of Artificial Intelligence and Machine Aid"></a>
         <!-- Sidebar Toggle-->
-        <button type="button" class="text-decoration-none btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" title="Open/Close Menu">
+       <!--- <button type="button" class="text-decoration-none btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" title="Abrir/Fechar Menu">
             <i class="fas fa-bars me-1" alt="Three horizontal lines to open/close menu"></i> Menu
-        </button>
+        </button>-->
 
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto me-0 me-md-3">
@@ -42,63 +42,24 @@
 
                 <ul class="dropdown-menu m-0 p-3" style="min-width: 240px;" aria-labelledby="accessibility-tools">
                     <li>
-                        <div class="dropdown-header px-0">Text size</div>
+                        <div class="dropdown-header px-0">Tamanho da letra</div>
 
                         <div class="d-flex flex-row  justify-content-between">
-                            <div class=" text-center"><button type="button" class=" btn btn-outline-primary" title="Increase text" id="increase"> <i class=" fa-sm fas fa-font"></i> <i class=" fa-sm fas fa-plus"></i> </button></div>
-                            <div class="px-2 text-center"><button type="button" class=" btn btn-outline-primary" title="Reset text" id="reset"> <i class=" fa-sm fas fa-font"></i> </button></div>
-                            <div class=" text-center"><button type="button" class=" btn btn-outline-primary" title="Decrease text" id="decrease"> <i class=" fa-sm fas fa-font"></i> <i class=" fa-sm fas fa-minus"></i> </button></div>
+                            <div class=" text-center"><button type="button" class=" btn btn-outline-primary" title="Aumentar o tamanho da letra" id="increase"> <i class=" fa-sm fas fa-font"></i> <i class=" fa-sm fas fa-plus"></i> </button></div>
+                            <div class="px-2 text-center"><button type="button" class=" btn btn-outline-primary" title="Tamanho original da letra" id="reset"> <i class=" fa-sm fas fa-font"></i> </button></div>
+                            <div class=" text-center"><button type="button" class=" btn btn-outline-primary" title="Diminuir o tamanho da letra" id="decrease"> <i class=" fa-sm fas fa-font"></i> <i class=" fa-sm fas fa-minus"></i> </button></div>
                         </div>
 
                     </li>
 
                     <li class="mt-3">
-                        <button type="button" class="btn w-100" title="High contrast" id="highcontrast"><i class="fa-sm fas fa-adjust me-3"></i>High Contrast</button>
+                        <button type="button" class="btn w-100" title="Auto Contraste" id="highcontrast"><i class="fa-sm fas fa-adjust me-3"></i>Auto Contraste</button>
                     </li>
                 </ul>
 
 
             </li>
-            <li class="nav-item dropdown">
-
-                <a title="{% if user.type == 'COMPANY' %}Company{% elif user.type == 'CANDIDATE' %}Candidate{% endif %} Menu"
-                   aria-label="User Menu" class="nav-link dropdown-toggle border-0 rounded" id="menu-user" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user fa-fw"></i>
-                    {% if user.candidate.social_name %}
-                    <span class="mx-2">{{ user.candidate.social_name }}</span>
-                    {% else %}
-                    <span class="mx-2">{{ user.name }}</span>
-                    {% endif %}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menu-user">
-                    {% if user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{% url 'password_change' %}"><i class="sb-nav-link-icon fas fa-key me-3"></i>{% trans 'Change password' %}</a></li>
-                    {% if not user.is_staff %}
-                    {% if user.type == 'COMPANY' %}
-                    <li><a class="dropdown-item" href="{% url 'company_edit' %}">
-                        <i class="fas me-3 fa-cog"></i>{% trans 'My profile' %}</a></li>
-                    {% elif user.type == 'PARTICIPANT' %}
-                    <li><a class="dropdown-item" href="{% url 'participant_edit' %}">
-                        <i class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a></li>
-                    {% elif user.type == 'COORDINATOR' %}
-                    <li><a class="dropdown-item" href="{% url 'coordinator_edit' %}">
-                        <i class="fas me-3 fa-cog"></i>{% trans 'My Profile' %}</a></li>
-
-                    {% endif %}
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    {% else %}
-
-                    <li><a class="dropdown-item" href="/admin"><i class="fas me-3 fa-cog"></i>{% trans 'Admin area' %}</a></li>
-                    {% endif %}
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">
-                            <i class="fas fa-sign-out-alt me-3"></i> {% trans 'Sign out' %}</a></li>
-                    {% else %}
-                    <li><a class="dropdown-item" href="{% url 'login' %}">{% trans 'Sign in' %}</a></li>
-                    {% endif %}
-                </ul>
-            </li>
+            
         </ul>
     </nav>
     <div id="layoutSidenav">
@@ -107,21 +68,14 @@
         </div>
         <div id="layoutSidenav_content">
 
-            {% if breadcrumbs %}
-            <div class="container-fluid px-md-5 px-3">
-                {% include "dynamic_breadcrumbs/breadcrumbs.html" with breadcrumbs=breadcrumbs%}
-            </div>
-            {% endif %}
+           
 
             <main id="main-content">
                 {% block content %}{% endblock %}
             </main>
 
             <div class="containter text-uppercase text-center my-5">
-                <a accesskey="h" class="visually-hidden-focusable" href="{% url 'home' %}">
-                    <i class="fa fa-chevron-left me-3 "></i>
-                    <span>{% trans 'Back to Home' %}</span>
-                </a>
+             
 
                 <a href="#top" class="btn btn-accent">
                     <i class="fas fa-chevron-up"></i> {% trans 'Back to top' %}
@@ -131,39 +85,7 @@
             <footer class="footer-site px-3 py-5 p-md-5">
                 <div class="container">
 
-                    <div class="p-0 p-md-4 d-flex justify-content-between align-items-center flex-md-row flex-column">
-                        <a accesskey="n" title="Opens in new window" target="_blank" href="https://umain.us5.list-manage.com/subscribe/post?u=5046935cf3dba2277a4b2d14b&amp;id=041e5069e3" class="text-decoration-none text-white text-center text-md-start">
-                            <span class="d-block fw-light">{% trans 'SIGN UP TO OUR' %}&nbsp;</span>
-                            <span class="d-block h4 text-bold big-footer">{% trans 'NEWSLETTER' %}</span>
-                        </a>
-                        <div class="footer-social">
-                            <!-- Facebook --> <a target="_blank" title="Enjoy our Facebook page (Opens in new window)" role="button" class="text-white my-5 mx-2 d-inline-block" href="https://www.facebook.com/talktoumain">
-                                <i aria-hidden="true" class="fa-2x fab fa-facebook"> </i>
-                                <span class="visually-hidden-focusable overflow-hidden">{% trans 'Enjoy our Facebook page' %}</span>
-
-                            </a>
-                            <!-- Instagram --> <a target="_blank" title="Follow our Instagram Profile (Opens in new window)" role="button" class="text-white my-5 mx-2 d-inline-block" href="https://www.instagram.com/talktoumain">
-                                <i aria-hidden="true" class="fa-2x fab fa-instagram"> </i>
-                                <span class="visually-hidden-focusable overflow-hidden">{% trans 'Follow our Instagram Profile' %}</span>
-
-                            </a>
-                            <!-- Youtube --> <a target="_blank" title="Subscribe to our Youtube channel (Opens in new window)" role="button" class="text-white my-5 mx-2 d-inline-block" href="https://www.youtube.com/channel/UCb8NewT_nCYk2UUc4fkkQzQ?sub_confirmation=1">
-                                <i aria-hidden="true" class="fa-2x fab fa-youtube"> </i>
-                                <span class="visually-hidden-focusable overflow-hidden">{% trans 'Subscribe to our Youtube' %}</span>
-
-                            </a>
-                            <!-- Twitter --> <a target="_blank" title="Follow our Twitter profile (Opens in new window)" role="button" class="text-white my-5 mx-2 d-inline-block" href="https://twitter.com/talktoumain">
-                                <i aria-hidden="true" class="fa-2x fab fa-twitter"> </i>
-                                <span class="visually-hidden-focusable overflow-hidden">{% trans 'Follow our Twitter profile' %}</span>
-
-                            </a>
-                            <!-- Linkedin --> <a target="_blank" title="Follow our Linkedin Page (Opens in new window)" role="button" class="text-white my-5 mx-2 d-inline-block" href="https://www.linkedin.com/company/talktoumain">
-                                <i aria-hidden="true" class="fa-2x fab fa-linkedin-in"> </i>
-                                <span class="visually-hidden-focusable overflow-hidden">{% trans 'Follow our Linkedin Page' %}</span>
-
-                            </a>
-                        </div>
-                    </div>
+                   
                     <div class="border-top pt-4 text-center footer-credits">
                         Laima-UFPE Pesquisas &copy; {% trans 'All rights reserved' %}
                     </div>

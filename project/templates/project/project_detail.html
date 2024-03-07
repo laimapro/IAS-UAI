@@ -53,36 +53,48 @@
 						{% endfor %}
 					</ul><br>
 					<a href="{% url 'pj_invite' object.id%}"class="btn btn-primary">{% trans 'Invite participant' %}</a>
+					
 				</div>
+				
+				
 				{% endif %}
+				<h2>Leia primeiro </h2>
+				<p>Olá Somos os pesquisadores do Laima-UFPE!. Queremos sua participação nesta pesquisa UAI (Urbana acessibilidade e inclusão). Suas respostas nos ajudarão buscar alternativas para atender aos passageiros com deficiência, dentro das nescessidades deles, e das possibilidades do motorista e da empresa. Em nenhum caso você será identificado junto à empresa ou à terceiros.Todos seus dados e respostas terão total sigilo. Apenas os pesquisadores do Laima terão acesso aos seus dados e estão comprometidos em manter sua privacidade. Porfavor, responda a todas as questões e nos ajude nessa importante pesquisa.  </p>
+				<H2>Orientações para responder a pessquisa</H2>
+				<p>Nesta parte da pesquisa serão apresentadas várias situações. Cada situação terá um título e uma pergunta. Você deverá escolher uma das alternativas como resposta para a situação. Se você errar a escolha, não se preocupe. Você será orientado a escolher uma nova alternativa. Toda vez que você acertar, você deverá dar uma nota para a alternativa que consideramos correta. Você pode dar nota de 0 a 10. Nota 10 Significará que você concorda totalmente com a resposta. Se você der nota 5, Significará que você concorda em 50% porcento . Se você der nota 0, Significará que você não concorda de modo algum com a alternativa. Lembre-se , sua nota pode ser de 0 a 10: nota perto de 10 significa  que você concorda muito. Nota perto de 0 você descorda muito. Gaste o tempo que você precisar para responder cada questão. O importante é aprender com cada situação, com cada comentário que você receberá durante sua participação em nossa pesquisa. <b>Muito Obrigado</b>.</p>
+
 			</div>
-			<div class="col-md-6">
-				<h2 class="text-uppercase">{% trans 'Instances' %}</h2>
-				<ul class="list-group">
-					{% if instances_with_question_count %}
-						{% for instance, finished_instance in instances_with_question_count %}
+			{% if request.user.type == 'PARTICIPANT' or request.user.type == 'COORDINATOR' %}
+			
+				<div class="col-md-6">
+					
+					<h2 class="text-uppercase">{% trans 'Questões de pesquisa' %}</h2>
+					<ul class="list-group">
+						{% if instances_with_question_count %}
+							{% for instance, finished_instance in instances_with_question_count %}
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									{{ instance.title }}
+									{% if finished_instance.status_attempt == 1 %}
+										<span>Pesquisa respondida</span>
+									{% else %}
+										<span class="badge badge-pill" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+											<a href="{% url 'survey_start' instance.id %}" class="btn btn-primary">{% trans 'Answer survey' %}</a>
+										</span>
+									{% endif %}
+								</li>
+							{% endfor %}
+						{% else %}
 							<li class="list-group-item d-flex justify-content-between align-items-center">
-								{{ instance.title }}
-								{% if finished_instance.status_attempt == 1 %}
-									<span>Pesquisa respondida</span>
-								{% else %}
-									<span class="badge badge-pill" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
-										<a href="{% url 'survey_start' instance.id %}" class="btn btn-primary">{% trans 'Answer survey' %}</a>
-									</span>
-								{% endif %}
+								Nenhuma instância encontrada
 							</li>
-						{% endfor %}
-					{% else %}
-						<li class="list-group-item d-flex justify-content-between align-items-center">
-							Nenhuma instância encontrada
-						</li>
+						{% endif %}
+					</ul>
+					{% if request.user.type == 'COORDINATOR' or request.user.is_superuser %}
+						<a href="#" class="btn btn-primary my-4">{% trans 'Add new instance' %}</a>
+						<a href="{% url 'instance_import' object.id %}" class="btn btn-primary my-4">{% trans 'Import Word file' %} (docx)</a>
 					{% endif %}
-				</ul>
-				{% if request.user.type == 'COORDINATOR' or request.user.is_superuser %}
-					<a href="#" class="btn btn-primary my-4">{% trans 'Add new instance' %}</a>
-					<a href="{% url 'instance_import' object.id %}" class="btn btn-primary my-4">{% trans 'Import Word file' %} (docx)</a>
-				{% endif %}
-			</div>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 

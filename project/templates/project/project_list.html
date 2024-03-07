@@ -3,7 +3,7 @@
 {% load i18n %}
 
 <div class="p-4 p-md-5 pt-5 scrollarea">
-	<h2 class="article-title">{% trans 'List' %} <span class="text-bold">{% trans 'Projects' %}</span></h2>
+	<h2 class="article-title">{% trans 'Meus' %} <span class="text-bold">{% trans 'Projects' %}</span></h2>
 
 	<section class="mt-5 row">
 																																																																										</Projects></span></h3>
@@ -20,7 +20,7 @@
 					<div class="card-title">
 						<h3 class="fw-light">
 							<a href="{% url 'pj_detail' obj.id %}"
-								title="Click to open '{{ obj.pj_name }}' detail">
+								title="Clique para abrir o projeto '{{ obj.pj_name }}'">
 								{{ obj.pj_name }}
 							</a>
 						</h3>
@@ -30,9 +30,7 @@
 					<div title="Publish at">
 						<i class="fa fa-calendar-day me-3"></i>{{ obj.created_at|date:'d M Y' }}
 					</div>
-					<a href="{% url 'pj_detail' obj.id %}" title="Click to open '{{ obj.pj_name }}' detail">
-						<i alt="Drawing of a right arrow" class="fa fa-chevron-right"></i>
-					</a>
+					
 				</footer>
 			</div>
 		</div>
@@ -41,7 +39,6 @@
 		{% endfor %}
 	</section>
 
-	{% include 'pagination.html' %}
 
 </div>
 
